@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{923ACDC6-B5FC-4110-A07B-EA8CA16DBED0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Inventory.My.MyApplication</StartupObject>
+    <RootNamespace>Inventory</RootNamespace>
+    <AssemblyName>Inventory</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Inventory.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Inventory.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modules\Laporan\test.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>test.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Barang\ClassBarang.vb" />
+    <Compile Include="Modules\Barang\FormBrowerBarang.Designer.vb">
+      <DependentUpon>FormBrowerBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Barang\FormBrowerBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Barang\FormTambahBarang.Designer.vb">
+      <DependentUpon>FormTambahBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Barang\FormTambahBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Barang\FormBarang.Designer.vb">
+      <DependentUpon>FormBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Barang\FormBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Laporan\Faktur Pelunasan Kredit1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Faktur Pelunasan Kredit.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Faktur Pemesanan1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Faktur Pemesanan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Faktur Penjualan1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Faktur Penjualan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Laporan Barang1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Laporan Barang.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Laporan Pelanggan1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Laporan Pelanggan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Laporan Pelunasan Kredit.vb">
+      <DependentUpon>Laporan Pelunasan Kredit.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Modules\Laporan\Laporan Penjualan1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Laporan Penjualan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Models\DataBarang.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataKelompok.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataPelanggan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataPelunasan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataPenjualan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataPesanan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataPiutang.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSupplier.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataUser.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailPenjualan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailPesanan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DLL\ClassDB.vb" />
+    <Compile Include="DLL\DAL.vb" />
+    <Compile Include="Modules\Kelompok\FormBrowerKelompok.Designer.vb">
+      <DependentUpon>FormBrowerKelompok.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Kelompok\FormBrowerKelompok.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\ModelEntities.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEntities.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEntities.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.Designer.vb">
+      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormBrowerPesanan.Designer.vb">
+      <DependentUpon>FormBrowerPesanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormBrowerPesanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Piutang\FormBrowerPiutang.Designer.vb">
+      <DependentUpon>FormBrowerPiutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Piutang\FormBrowerPiutang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Supplier\ClassSupplier.vb" />
+    <Compile Include="Modules\Supplier\FormBrowerSupplier.Designer.vb">
+      <DependentUpon>FormBrowerSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Supplier\FormBrowerSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Supplier\FormSupplier.Designer.vb">
+      <DependentUpon>FormSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Supplier\FormSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pelanggan\FormBrowerPelanggan.Designer.vb">
+      <DependentUpon>FormBrowerPelanggan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pelanggan\FormBrowerPelanggan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormDaftarPesanan.Designer.vb">
+      <DependentUpon>FormDaftarPesanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormDaftarPesanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ManajemenUser\ClassUser.vb" />
+    <Compile Include="Modules\ManajemenUser\FormGantiPassword.Designer.vb">
+      <DependentUpon>FormGantiPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ManajemenUser\FormGantiPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\ManajemenUser\FormLogin.Designer.vb">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ManajemenUser\FormLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Kelompok\ClassKelompok.vb" />
+    <Compile Include="Modules\Kelompok\FormKelompok.Designer.vb">
+      <DependentUpon>FormKelompok.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Kelompok\FormKelompok.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pelunasan\ClassPelunasan.vb" />
+    <Compile Include="Modules\Penjualan\ClassPenjualan.vb" />
+    <Compile Include="Modules\Pesanan\ClassPesanan.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Modules\Pelanggan\ClassPelanggan.vb" />
+    <Compile Include="Modules\Pelanggan\FormPelanggan.Designer.vb">
+      <DependentUpon>FormPelanggan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pelanggan\FormPelanggan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pelunasan\FormDaftarPelunasanKredit.Designer.vb">
+      <DependentUpon>FormDaftarPelunasanKredit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pelunasan\FormDaftarPelunasanKredit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pelunasan\FormPelunasan.Designer.vb">
+      <DependentUpon>FormPelunasan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pelunasan\FormPelunasan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Penjualan\FormPenjualan.Designer.vb">
+      <DependentUpon>FormPenjualan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Penjualan\FormPenjualan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormPesanan.Designer.vb">
+      <DependentUpon>FormPesanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Pesanan\FormPesanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Piutang\ClassPiutang.vb" />
+    <Compile Include="Modules\Piutang\FormDaftarPiutang.Designer.vb">
+      <DependentUpon>FormDaftarPiutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Piutang\FormDaftarPiutang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\FormBasic.Designer.vb">
+      <DependentUpon>FormBasic.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Template\FormBasic.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\FormBrower.Designer.vb">
+      <DependentUpon>FormBrower.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Template\FormBrower.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Laporan\FormLaporan.Designer.vb">
+      <DependentUpon>FormLaporan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Laporan\FormLaporan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\ManajemenUser\ModelUser.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\Laporan\test.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>test.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Modules\Barang\FormBrowerBarang.resx">
+      <DependentUpon>FormBrowerBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Barang\FormTambahBarang.resx">
+      <DependentUpon>FormTambahBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Barang\FormBarang.resx">
+      <DependentUpon>FormBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Modules\Laporan\Faktur Pelunasan Kredit.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Faktur Pelunasan Kredit1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Faktur Pemesanan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Faktur Pemesanan1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Faktur Penjualan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Faktur Penjualan1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Laporan Barang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Laporan Barang1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Laporan Pelanggan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Laporan Pelanggan1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Laporan Pelunasan Kredit.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Laporan Pelunasan Kredit.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modules\Laporan\Laporan Penjualan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Laporan Penjualan1.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Modules\Kelompok\FormBrowerKelompok.resx">
+      <DependentUpon>FormBrowerKelompok.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Penjualan\FormDaftarPenjualan.resx">
+      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pesanan\FormBrowerPesanan.resx">
+      <DependentUpon>FormBrowerPesanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Piutang\FormBrowerPiutang.resx">
+      <DependentUpon>FormBrowerPiutang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Supplier\FormBrowerSupplier.resx">
+      <DependentUpon>FormBrowerSupplier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Supplier\FormSupplier.resx">
+      <DependentUpon>FormSupplier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pelanggan\FormBrowerPelanggan.resx">
+      <DependentUpon>FormBrowerPelanggan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pesanan\FormDaftarPesanan.resx">
+      <DependentUpon>FormDaftarPesanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ManajemenUser\FormGantiPassword.resx">
+      <DependentUpon>FormGantiPassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ManajemenUser\FormLogin.resx">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Kelompok\FormKelompok.resx">
+      <DependentUpon>FormKelompok.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pelanggan\FormPelanggan.resx">
+      <DependentUpon>FormPelanggan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pelunasan\FormDaftarPelunasanKredit.resx">
+      <DependentUpon>FormDaftarPelunasanKredit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pelunasan\FormPelunasan.resx">
+      <DependentUpon>FormPelunasan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Penjualan\FormPenjualan.resx">
+      <DependentUpon>FormPenjualan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Pesanan\FormPesanan.resx">
+      <DependentUpon>FormPesanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Piutang\FormDaftarPiutang.resx">
+      <DependentUpon>FormDaftarPiutang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\FormBasic.resx">
+      <DependentUpon>FormBasic.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\FormBrower.resx">
+      <DependentUpon>FormBrower.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Laporan\FormLaporan.resx">
+      <DependentUpon>FormLaporan.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\ModelEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelEntities.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ModelEntities.edmx.diagram">
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\DataBarang.datasource" />
+    <None Include="My Project\DataSources\DataKelompok.datasource" />
+    <None Include="My Project\DataSources\DataPelanggan.datasource" />
+    <None Include="My Project\DataSources\DataPesanan.datasource" />
+    <None Include="My Project\DataSources\DataPiutang.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\ic_cached_black_48dp_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_cached_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_add_circle_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_mode_edit_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_delete_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_save_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_cancel_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_exit_to_app_black_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_cached_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_add_circle_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_mode_edit_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_delete_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_save_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_cancel_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_exit_to_app_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_local_offer_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_local_offer_white_48dp_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_recent_actors_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_assignment_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_chrome_reader_mode_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_settings_applications_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_group_work_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_done_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_print_white_48dp_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ModelEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+      <LastGenOutput>ModelEntities.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+      <LastGenOutput>ModelEntities.vb</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
