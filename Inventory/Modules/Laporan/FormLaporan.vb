@@ -6,6 +6,7 @@
     Private _cls As Object
     Private _ReportName As ReportName
 
+
 #End Region
 
 #Region "Constructor"
@@ -39,7 +40,7 @@
         ElseIf _ReportName = ReportName.Penjualan Then
             lblTitle.Text = "Laporan Penjualan"
             reportFile = "Laporan Penjualan.rpt"
-            _cls = New ClassPenjualan(_db)
+            _cls = New ClassLaporanPenjualan(_db)
 
         End If
 
