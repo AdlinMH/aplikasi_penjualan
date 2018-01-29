@@ -5,26 +5,31 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0b1c1110b25f4d3ea08cdd4d3724d63d" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryEntities.DataKelompok" Width="1.5" PointX="0.75" PointY="14.25" />
-        <EntityTypeShape EntityType="InventoryEntities.DataPelanggan" Width="1.5" PointX="0.75" PointY="4.125" />
-        <EntityTypeShape EntityType="InventoryEntities.DataPelunasan" Width="1.5" PointX="5" PointY="1" />
-        <EntityTypeShape EntityType="InventoryEntities.DataPesanan" Width="1.5" PointX="3" PointY="8.25" />
-        <EntityTypeShape EntityType="InventoryEntities.DataUser" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InventoryEntities.DetailPenjualan" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="InventoryEntities.DetailPesanan" Width="1.5" PointX="5.25" PointY="11.75" />
-        <EntityTypeShape EntityType="InventoryEntities.sysdiagrams" Width="1.5" PointX="7.75" PointY="6.75" />
-        <AssociationConnector Association="InventoryEntities.FK_DataPesanan_DataPelanggan" />
-        <AssociationConnector Association="InventoryEntities.FK_DetailPesanan_DataPesanan" />
-        <EntityTypeShape EntityType="InventoryEntities.DataSupplier" Width="1.5" PointX="7.375" PointY="9.75" />
-        <EntityTypeShape EntityType="InventoryEntities.DataBarang" Width="1.5" PointX="3" PointY="13.625" />
+        <EntityTypeShape EntityType="InventoryEntities.DataBarang" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryEntities.DataKelompok" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPelanggan" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPelunasan" Width="1.5" PointX="5.25" PointY="15.25" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPembelian" Width="1.5" PointX="3" PointY="18.875" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPenjualan" Width="1.5" PointX="8.25" PointY="5.875" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPesanan" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="InventoryEntities.DataPiutang" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="InventoryEntities.DataSupplier" Width="1.5" PointX="0.75" PointY="19.5" />
+        <EntityTypeShape EntityType="InventoryEntities.DataUser" Width="1.5" PointX="7.75" PointY="2.25" />
+        <EntityTypeShape EntityType="InventoryEntities.DetailPembelian" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="InventoryEntities.DetailPenjualan" Width="1.5" PointX="2.75" PointY="10.25" />
+        <EntityTypeShape EntityType="InventoryEntities.DetailPesanan" Width="1.5" PointX="5.25" PointY="6" />
+        <EntityTypeShape EntityType="InventoryEntities.sysdiagrams" Width="1.5" PointX="4.75" PointY="10.25" />
         <AssociationConnector Association="InventoryEntities.FK_DataBarang_DataKelompok1" />
+        <AssociationConnector Association="InventoryEntities.FK_DetailPembelian_DataBarang" />
         <AssociationConnector Association="InventoryEntities.FK_DetailPesanan_DataBarang" />
-        <EntityTypeShape EntityType="InventoryEntities.DataPenjualan" Width="1.5" PointX="10.25" PointY="6" />
         <AssociationConnector Association="InventoryEntities.FK_DataPenjualan_DataPelanggan" />
-        <AssociationConnector Association="InventoryEntities.FK_DataPenjualan_DataPesanan" />
-        <EntityTypeShape EntityType="InventoryEntities.DataPiutang" Width="1.5" PointX="3" PointY="4.375" />
+        <AssociationConnector Association="InventoryEntities.FK_DataPesanan_DataPelanggan" />
         <AssociationConnector Association="InventoryEntities.FK_DataPiutang_DataPelanggan" />
         <AssociationConnector Association="InventoryEntities.FK_DataPelunasan_DataPiutang" />
+        <AssociationConnector Association="InventoryEntities.FK_DataPembelian_DataSupplier" />
+        <AssociationConnector Association="InventoryEntities.FK_DetailPembelian_DetailPembelian" />
+        <AssociationConnector Association="InventoryEntities.FK_DataPenjualan_DataPesanan" />
+        <AssociationConnector Association="InventoryEntities.FK_DetailPesanan_DataPesanan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

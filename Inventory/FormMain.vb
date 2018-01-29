@@ -69,7 +69,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub TransaksiPelunanasanKreditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransaksiPelunanasanKreditToolStripMenuItem.Click
+    Private Sub TransaksiPelunanasanKreditToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim frm = New FormDaftarPesanan()
         If IsFormOpen(frm) Then
             Return
@@ -87,7 +87,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs)
         Dim frm = New FormDaftarPenjualan()
         If IsFormOpen(frm) Then
             Return
@@ -96,7 +96,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs)
         Dim frm = New FormDaftarPelunasanKredit()
         If IsFormOpen(frm) Then
             Return
@@ -123,7 +123,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
+    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs)
         Dim frm = New FormDaftarPiutang()
         If IsFormOpen(frm) Then
             Return
@@ -192,6 +192,14 @@ Public Class FormMain
         Return False
     End Function
 
+    Private Sub ToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem8.Click
+        Dim frm = New FormPembelian()
+        If IsFormOpen(frm) Then
+            Return
+        End If
+        frm.MdiParent = Me
+        frm.Show()
+    End Sub
 End Class
 
 Public Class MyRenderer

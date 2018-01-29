@@ -9,7 +9,6 @@
 #End Region
 
 #Region "Constructor"
-
     Public Sub New(rptName As ReportName)
         InitializeComponent()
         _db = New DbEntities()
@@ -17,11 +16,6 @@
 
         InitializeComponent()
     End Sub
-
-#End Region
-
-
-#Region "Methods"
 
 #End Region
 

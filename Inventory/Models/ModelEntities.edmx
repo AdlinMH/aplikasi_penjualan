@@ -51,6 +51,23 @@
           <Property Name="Delete" Type="char" MaxLength="1" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="DataPembelian">
+          <Key>
+            <PropertyRef Name="No Pembelian" />
+          </Key>
+          <Property Name="No Pembelian" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kode Supplier" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tanggal" Type="date" Nullable="false" />
+          <Property Name="Sub Total" Type="bigint" Nullable="false" />
+          <Property Name="Diskon1" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="PPN1" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Diskon2" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="PPN2" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Digunakan" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Delete" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="DataPenjualan">
           <Key>
             <PropertyRef Name="No Penjualan" />
@@ -118,6 +135,19 @@
           <Property Name="User Name" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="DetailPembelian">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="No Pembelian" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Kode Barang" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nama Barang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Satuan" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Harga" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Sub Total" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="DetailPenjualan">
           <Key>
             <PropertyRef Name="ID" />
@@ -176,6 +206,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DataPembelian_DataSupplier">
+          <End Role="DataSupplier" Type="Self.DataSupplier" Multiplicity="1" />
+          <End Role="DataPembelian" Type="Self.DataPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataSupplier">
+              <PropertyRef Name="Kode Supplier" />
+            </Principal>
+            <Dependent Role="DataPembelian">
+              <PropertyRef Name="Kode Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DataPenjualan_DataPelanggan">
           <End Role="DataPelanggan" Type="Self.DataPelanggan" Multiplicity="0..1" />
           <End Role="DataPenjualan" Type="Self.DataPenjualan" Multiplicity="*" />
@@ -224,6 +266,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DetailPembelian_DataBarang">
+          <End Role="DataBarang" Type="Self.DataBarang" Multiplicity="1" />
+          <End Role="DetailPembelian" Type="Self.DetailPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataBarang">
+              <PropertyRef Name="Kode Barang" />
+            </Principal>
+            <Dependent Role="DetailPembelian">
+              <PropertyRef Name="Kode Barang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailPembelian_DetailPembelian">
+          <End Role="DataPembelian" Type="Self.DataPembelian" Multiplicity="1" />
+          <End Role="DetailPembelian" Type="Self.DetailPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPembelian">
+              <PropertyRef Name="No Pembelian" />
+            </Principal>
+            <Dependent Role="DetailPembelian">
+              <PropertyRef Name="No Pembelian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DetailPesanan_DataBarang">
           <End Role="DataBarang" Type="Self.DataBarang" Multiplicity="1" />
           <End Role="DetailPesanan" Type="Self.DetailPesanan" Multiplicity="*" />
@@ -255,11 +321,13 @@
           <EntitySet Name="DataKelompok" EntityType="Self.DataKelompok" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPelanggan" EntityType="Self.DataPelanggan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPelunasan" EntityType="Self.DataPelunasan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataPembelian" EntityType="Self.DataPembelian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPenjualan" EntityType="Self.DataPenjualan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPesanan" EntityType="Self.DataPesanan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPiutang" EntityType="Self.DataPiutang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataSupplier" EntityType="Self.DataSupplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataUser" EntityType="Self.DataUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailPembelian" EntityType="Self.DetailPembelian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailPenjualan" EntityType="Self.DetailPenjualan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailPesanan" EntityType="Self.DetailPesanan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -270,6 +338,10 @@
           <AssociationSet Name="FK_DataPelunasan_DataPiutang" Association="Self.FK_DataPelunasan_DataPiutang">
             <End Role="DataPiutang" EntitySet="DataPiutang" />
             <End Role="DataPelunasan" EntitySet="DataPelunasan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPembelian_DataSupplier" Association="Self.FK_DataPembelian_DataSupplier">
+            <End Role="DataSupplier" EntitySet="DataSupplier" />
+            <End Role="DataPembelian" EntitySet="DataPembelian" />
           </AssociationSet>
           <AssociationSet Name="FK_DataPenjualan_DataPelanggan" Association="Self.FK_DataPenjualan_DataPelanggan">
             <End Role="DataPelanggan" EntitySet="DataPelanggan" />
@@ -287,6 +359,14 @@
             <End Role="DataPelanggan" EntitySet="DataPelanggan" />
             <End Role="DataPiutang" EntitySet="DataPiutang" />
           </AssociationSet>
+          <AssociationSet Name="FK_DetailPembelian_DataBarang" Association="Self.FK_DetailPembelian_DataBarang">
+            <End Role="DataBarang" EntitySet="DataBarang" />
+            <End Role="DetailPembelian" EntitySet="DetailPembelian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailPembelian_DetailPembelian" Association="Self.FK_DetailPembelian_DetailPembelian">
+            <End Role="DataPembelian" EntitySet="DataPembelian" />
+            <End Role="DetailPembelian" EntitySet="DetailPembelian" />
+          </AssociationSet>
           <AssociationSet Name="FK_DetailPesanan_DataBarang" Association="Self.FK_DetailPesanan_DataBarang">
             <End Role="DataBarang" EntitySet="DataBarang" />
             <End Role="DetailPesanan" EntitySet="DetailPesanan" />
@@ -301,42 +381,40 @@
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DataBarang" EntityType="InventoryEntities.DataBarang" />
           <EntitySet Name="DataKelompok" EntityType="InventoryEntities.DataKelompok" />
           <EntitySet Name="DataPelanggan" EntityType="InventoryEntities.DataPelanggan" />
           <EntitySet Name="DataPelunasan" EntityType="InventoryEntities.DataPelunasan" />
+          <EntitySet Name="DataPembelian" EntityType="InventoryEntities.DataPembelian" />
+          <EntitySet Name="DataPenjualan" EntityType="InventoryEntities.DataPenjualan" />
           <EntitySet Name="DataPesanan" EntityType="InventoryEntities.DataPesanan" />
+          <EntitySet Name="DataPiutang" EntityType="InventoryEntities.DataPiutang" />
+          <EntitySet Name="DataSupplier" EntityType="InventoryEntities.DataSupplier" />
           <EntitySet Name="DataUser" EntityType="InventoryEntities.DataUser" />
+          <EntitySet Name="DetailPembelian" EntityType="InventoryEntities.DetailPembelian" />
           <EntitySet Name="DetailPenjualan" EntityType="InventoryEntities.DetailPenjualan" />
           <EntitySet Name="DetailPesanan" EntityType="InventoryEntities.DetailPesanan" />
           <EntitySet Name="sysdiagrams" EntityType="InventoryEntities.sysdiagrams" />
-          <AssociationSet Name="FK_DataPesanan_DataPelanggan" Association="InventoryEntities.FK_DataPesanan_DataPelanggan">
-            <End Role="DataPelanggan" EntitySet="DataPelanggan" />
-            <End Role="DataPesanan" EntitySet="DataPesanan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetailPesanan_DataPesanan" Association="InventoryEntities.FK_DetailPesanan_DataPesanan">
-            <End Role="DataPesanan" EntitySet="DataPesanan" />
-            <End Role="DetailPesanan" EntitySet="DetailPesanan" />
-          </AssociationSet>
-          <EntitySet Name="DataSupplier" EntityType="InventoryEntities.DataSupplier" />
-          <EntitySet Name="DataBarang" EntityType="InventoryEntities.DataBarang" />
           <AssociationSet Name="FK_DataBarang_DataKelompok1" Association="InventoryEntities.FK_DataBarang_DataKelompok1">
             <End Role="DataKelompok" EntitySet="DataKelompok" />
             <End Role="DataBarang" EntitySet="DataBarang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailPembelian_DataBarang" Association="InventoryEntities.FK_DetailPembelian_DataBarang">
+            <End Role="DataBarang" EntitySet="DataBarang" />
+            <End Role="DetailPembelian" EntitySet="DetailPembelian" />
           </AssociationSet>
           <AssociationSet Name="FK_DetailPesanan_DataBarang" Association="InventoryEntities.FK_DetailPesanan_DataBarang">
             <End Role="DataBarang" EntitySet="DataBarang" />
             <End Role="DetailPesanan" EntitySet="DetailPesanan" />
           </AssociationSet>
-          <EntitySet Name="DataPenjualan" EntityType="InventoryEntities.DataPenjualan" />
           <AssociationSet Name="FK_DataPenjualan_DataPelanggan" Association="InventoryEntities.FK_DataPenjualan_DataPelanggan">
             <End Role="DataPelanggan" EntitySet="DataPelanggan" />
             <End Role="DataPenjualan" EntitySet="DataPenjualan" />
           </AssociationSet>
-          <AssociationSet Name="FK_DataPenjualan_DataPesanan" Association="InventoryEntities.FK_DataPenjualan_DataPesanan">
+          <AssociationSet Name="FK_DataPesanan_DataPelanggan" Association="InventoryEntities.FK_DataPesanan_DataPelanggan">
+            <End Role="DataPelanggan" EntitySet="DataPelanggan" />
             <End Role="DataPesanan" EntitySet="DataPesanan" />
-            <End Role="DataPenjualan" EntitySet="DataPenjualan" />
           </AssociationSet>
-          <EntitySet Name="DataPiutang" EntityType="InventoryEntities.DataPiutang" />
           <AssociationSet Name="FK_DataPiutang_DataPelanggan" Association="InventoryEntities.FK_DataPiutang_DataPelanggan">
             <End Role="DataPelanggan" EntitySet="DataPelanggan" />
             <End Role="DataPiutang" EntitySet="DataPiutang" />
@@ -345,7 +423,40 @@
             <End Role="DataPiutang" EntitySet="DataPiutang" />
             <End Role="DataPelunasan" EntitySet="DataPelunasan" />
           </AssociationSet>
+          <AssociationSet Name="FK_DataPembelian_DataSupplier" Association="InventoryEntities.FK_DataPembelian_DataSupplier">
+            <End Role="DataSupplier" EntitySet="DataSupplier" />
+            <End Role="DataPembelian" EntitySet="DataPembelian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailPembelian_DetailPembelian" Association="InventoryEntities.FK_DetailPembelian_DetailPembelian">
+            <End Role="DataPembelian" EntitySet="DataPembelian" />
+            <End Role="DetailPembelian" EntitySet="DetailPembelian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPenjualan_DataPesanan" Association="InventoryEntities.FK_DataPenjualan_DataPesanan">
+            <End Role="DataPesanan" EntitySet="DataPesanan" />
+            <End Role="DataPenjualan" EntitySet="DataPenjualan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailPesanan_DataPesanan" Association="InventoryEntities.FK_DetailPesanan_DataPesanan">
+            <End Role="DataPesanan" EntitySet="DataPesanan" />
+            <End Role="DetailPesanan" EntitySet="DetailPesanan" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DataBarang">
+          <Key>
+            <PropertyRef Name="Kode_Barang" />
+          </Key>
+          <Property Name="Kode_Barang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nama_Barang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kode_Kelompok" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Stok" Type="Int32" Nullable="false" />
+          <Property Name="Satuan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Harga_beli" Type="Int64" Nullable="false" />
+          <Property Name="Harga_Jual" Type="Int64" Nullable="false" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DataKelompok" Relationship="InventoryEntities.FK_DataBarang_DataKelompok1" FromRole="DataBarang" ToRole="DataKelompok" />
+          <NavigationProperty Name="DetailPembelian" Relationship="InventoryEntities.FK_DetailPembelian_DataBarang" FromRole="DataBarang" ToRole="DetailPembelian" />
+          <NavigationProperty Name="DetailPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataBarang" FromRole="DataBarang" ToRole="DetailPesanan" />
+        </EntityType>
         <EntityType Name="DataKelompok">
           <Key>
             <PropertyRef Name="Kode_Kelompok" />
@@ -367,8 +478,8 @@
           <Property Name="Telepon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DataPesanan_DataPelanggan" FromRole="DataPelanggan" ToRole="DataPesanan" />
           <NavigationProperty Name="DataPenjualan" Relationship="InventoryEntities.FK_DataPenjualan_DataPelanggan" FromRole="DataPelanggan" ToRole="DataPenjualan" />
+          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DataPesanan_DataPelanggan" FromRole="DataPelanggan" ToRole="DataPesanan" />
           <NavigationProperty Name="DataPiutang" Relationship="InventoryEntities.FK_DataPiutang_DataPelanggan" FromRole="DataPelanggan" ToRole="DataPiutang" />
         </EntityType>
         <EntityType Name="DataPelunasan">
@@ -382,6 +493,47 @@
           <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="DataPiutang" Relationship="InventoryEntities.FK_DataPelunasan_DataPiutang" FromRole="DataPelunasan" ToRole="DataPiutang" />
+        </EntityType>
+        <EntityType Name="DataPembelian">
+          <Key>
+            <PropertyRef Name="No_Pembelian" />
+          </Key>
+          <Property Name="No_Pembelian" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kode_Supplier" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tanggal" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sub_Total" Type="Int64" Nullable="false" />
+          <Property Name="Diskon1" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="PPN1" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Diskon2" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="PPN2" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Digunakan" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Delete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataSupplier" Relationship="InventoryEntities.FK_DataPembelian_DataSupplier" FromRole="DataPembelian" ToRole="DataSupplier" />
+          <NavigationProperty Name="DetailPembelian" Relationship="InventoryEntities.FK_DetailPembelian_DetailPembelian" FromRole="DataPembelian" ToRole="DetailPembelian" />
+        </EntityType>
+        <EntityType Name="DataPenjualan">
+          <Key>
+            <PropertyRef Name="No_Penjualan" />
+          </Key>
+          <Property Name="No_Penjualan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tanggal" Type="DateTime" Precision="0" />
+          <Property Name="Jenis" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="No_Pesanan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kode_Pelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Jatuh_Tempo" Type="DateTime" Precision="0" />
+          <Property Name="Sub_Total" Type="Int64" />
+          <Property Name="Diskon1" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Diskon2" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="PPN1" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="PPN2" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Panjar" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DataPelanggan" Relationship="InventoryEntities.FK_DataPenjualan_DataPelanggan" FromRole="DataPenjualan" ToRole="DataPelanggan" />
+          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DataPenjualan_DataPesanan" FromRole="DataPenjualan" ToRole="DataPesanan" />
         </EntityType>
         <EntityType Name="DataPesanan">
           <Key>
@@ -400,8 +552,34 @@
           <Property Name="Delete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="DataPelanggan" Relationship="InventoryEntities.FK_DataPesanan_DataPelanggan" FromRole="DataPesanan" ToRole="DataPelanggan" />
-          <NavigationProperty Name="DetailPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataPesanan" FromRole="DataPesanan" ToRole="DetailPesanan" />
           <NavigationProperty Name="DataPenjualan" Relationship="InventoryEntities.FK_DataPenjualan_DataPesanan" FromRole="DataPesanan" ToRole="DataPenjualan" />
+          <NavigationProperty Name="DetailPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataPesanan" FromRole="DataPesanan" ToRole="DetailPesanan" />
+        </EntityType>
+        <EntityType Name="DataPiutang">
+          <Key>
+            <PropertyRef Name="No_Piutang" />
+          </Key>
+          <Property Name="No_Piutang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kode_Pelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nilai" Type="Int64" />
+          <Property Name="Panjar" Type="Int64" />
+          <Property Name="Total_Bayar" Type="Int64" />
+          <Property Name="Jatuh_Tempo" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DataPelanggan" Relationship="InventoryEntities.FK_DataPiutang_DataPelanggan" FromRole="DataPiutang" ToRole="DataPelanggan" />
+          <NavigationProperty Name="DataPelunasan" Relationship="InventoryEntities.FK_DataPelunasan_DataPiutang" FromRole="DataPiutang" ToRole="DataPelunasan" />
+        </EntityType>
+        <EntityType Name="DataSupplier">
+          <Key>
+            <PropertyRef Name="Kode_Supplier" />
+          </Key>
+          <Property Name="Kode_Supplier" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nama_Supplier" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Alamat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Kota" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telepon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DataPembelian" Relationship="InventoryEntities.FK_DataPembelian_DataSupplier" FromRole="DataSupplier" ToRole="DataPembelian" />
         </EntityType>
         <EntityType Name="DataUser">
           <Key>
@@ -409,6 +587,21 @@
           </Key>
           <Property Name="User_Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DetailPembelian">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="No_Pembelian" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Kode_Barang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nama_Barang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Satuan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
+          <Property Name="Sub_Total" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
+          <NavigationProperty Name="DataBarang" Relationship="InventoryEntities.FK_DetailPembelian_DataBarang" FromRole="DetailPembelian" ToRole="DataBarang" />
+          <NavigationProperty Name="DataPembelian" Relationship="InventoryEntities.FK_DetailPembelian_DetailPembelian" FromRole="DetailPembelian" ToRole="DataPembelian" />
         </EntityType>
         <EntityType Name="DetailPenjualan">
           <Key>
@@ -433,8 +626,8 @@
           <Property Name="Satuan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Harga" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
           <Property Name="Sub_Total" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
-          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataPesanan" FromRole="DetailPesanan" ToRole="DataPesanan" />
           <NavigationProperty Name="DataBarang" Relationship="InventoryEntities.FK_DetailPesanan_DataBarang" FromRole="DetailPesanan" ToRole="DataBarang" />
+          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataPesanan" FromRole="DetailPesanan" ToRole="DataPesanan" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -446,60 +639,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_DataPesanan_DataPelanggan">
-          <End Type="InventoryEntities.DataPelanggan" Role="DataPelanggan" Multiplicity="1" />
-          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DataPelanggan">
-              <PropertyRef Name="Kode_Pelanggan" />
-            </Principal>
-            <Dependent Role="DataPesanan">
-              <PropertyRef Name="Kode_Pelanggan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DetailPesanan_DataPesanan">
-          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="InventoryEntities.DetailPesanan" Role="DetailPesanan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DataPesanan">
-              <PropertyRef Name="No_Pesanan" />
-            </Principal>
-            <Dependent Role="DetailPesanan">
-              <PropertyRef Name="No_Pesanan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="DataSupplier">
-          <Key>
-            <PropertyRef Name="Kode_Supplier" />
-          </Key>
-          <Property Name="Kode_Supplier" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Nama_Supplier" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Alamat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Kota" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telepon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="DataBarang">
-          <Key>
-            <PropertyRef Name="Kode_Barang" />
-          </Key>
-          <Property Name="Kode_Barang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Nama_Barang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Kode_Kelompok" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Stok" Type="Int32" Nullable="false" />
-          <Property Name="Satuan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Harga_beli" Type="Int64" Nullable="false" />
-          <Property Name="Harga_Jual" Type="Int64" Nullable="false" />
-          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="DataKelompok" Relationship="InventoryEntities.FK_DataBarang_DataKelompok1" FromRole="DataBarang" ToRole="DataKelompok" />
-          <NavigationProperty Name="DetailPesanan" Relationship="InventoryEntities.FK_DetailPesanan_DataBarang" FromRole="DataBarang" ToRole="DetailPesanan" />
-        </EntityType>
         <Association Name="FK_DataBarang_DataKelompok1">
           <End Type="InventoryEntities.DataKelompok" Role="DataKelompok" Multiplicity="0..1" />
           <End Type="InventoryEntities.DataBarang" Role="DataBarang" Multiplicity="*" />
@@ -509,6 +648,18 @@
             </Principal>
             <Dependent Role="DataBarang">
               <PropertyRef Name="Kode_Kelompok" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailPembelian_DataBarang">
+          <End Type="InventoryEntities.DataBarang" Role="DataBarang" Multiplicity="1" />
+          <End Type="InventoryEntities.DetailPembelian" Role="DetailPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataBarang">
+              <PropertyRef Name="Kode_Barang" />
+            </Principal>
+            <Dependent Role="DetailPembelian">
+              <PropertyRef Name="Kode_Barang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -524,28 +675,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DataPenjualan">
-          <Key>
-            <PropertyRef Name="No_Penjualan" />
-          </Key>
-          <Property Name="No_Penjualan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Tanggal" Type="DateTime" Precision="0" />
-          <Property Name="Jenis" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="No_Pesanan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Kode_Pelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Jatuh_Tempo" Type="DateTime" Precision="0" />
-          <Property Name="Sub_Total" Type="Int64" />
-          <Property Name="Diskon1" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="Diskon2" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="PPN1" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="PPN2" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="Total" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="Panjar" Type="Decimal" Precision="13" Scale="0" />
-          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="DataPelanggan" Relationship="InventoryEntities.FK_DataPenjualan_DataPelanggan" FromRole="DataPenjualan" ToRole="DataPelanggan" />
-          <NavigationProperty Name="DataPesanan" Relationship="InventoryEntities.FK_DataPenjualan_DataPesanan" FromRole="DataPenjualan" ToRole="DataPesanan" />
-        </EntityType>
         <Association Name="FK_DataPenjualan_DataPelanggan">
           <End Type="InventoryEntities.DataPelanggan" Role="DataPelanggan" Multiplicity="0..1" />
           <End Type="InventoryEntities.DataPenjualan" Role="DataPenjualan" Multiplicity="*" />
@@ -558,31 +687,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DataPenjualan_DataPesanan">
-          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="0..1" />
-          <End Type="InventoryEntities.DataPenjualan" Role="DataPenjualan" Multiplicity="*" />
+        <Association Name="FK_DataPesanan_DataPelanggan">
+          <End Type="InventoryEntities.DataPelanggan" Role="DataPelanggan" Multiplicity="1" />
+          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DataPesanan">
-              <PropertyRef Name="No_Pesanan" />
+            <Principal Role="DataPelanggan">
+              <PropertyRef Name="Kode_Pelanggan" />
             </Principal>
-            <Dependent Role="DataPenjualan">
-              <PropertyRef Name="No_Pesanan" />
+            <Dependent Role="DataPesanan">
+              <PropertyRef Name="Kode_Pelanggan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DataPiutang">
-          <Key>
-            <PropertyRef Name="No_Piutang" />
-          </Key>
-          <Property Name="No_Piutang" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Kode_Pelanggan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Nilai" Type="Int64" />
-          <Property Name="Panjar" Type="Int64" />
-          <Property Name="Total_Bayar" Type="Int64" />
-          <Property Name="Jatuh_Tempo" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="DataPelanggan" Relationship="InventoryEntities.FK_DataPiutang_DataPelanggan" FromRole="DataPiutang" ToRole="DataPelanggan" />
-          <NavigationProperty Name="DataPelunasan" Relationship="InventoryEntities.FK_DataPelunasan_DataPiutang" FromRole="DataPiutang" ToRole="DataPelunasan" />
-        </EntityType>
         <Association Name="FK_DataPiutang_DataPelanggan">
           <End Type="InventoryEntities.DataPelanggan" Role="DataPelanggan" Multiplicity="0..1" />
           <End Type="InventoryEntities.DataPiutang" Role="DataPiutang" Multiplicity="*" />
@@ -607,12 +723,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DataPembelian_DataSupplier">
+          <End Type="InventoryEntities.DataSupplier" Role="DataSupplier" Multiplicity="1" />
+          <End Type="InventoryEntities.DataPembelian" Role="DataPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataSupplier">
+              <PropertyRef Name="Kode_Supplier" />
+            </Principal>
+            <Dependent Role="DataPembelian">
+              <PropertyRef Name="Kode_Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailPembelian_DetailPembelian">
+          <End Type="InventoryEntities.DataPembelian" Role="DataPembelian" Multiplicity="1" />
+          <End Type="InventoryEntities.DetailPembelian" Role="DetailPembelian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPembelian">
+              <PropertyRef Name="No_Pembelian" />
+            </Principal>
+            <Dependent Role="DetailPembelian">
+              <PropertyRef Name="No_Pembelian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataPenjualan_DataPesanan">
+          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="0..1" />
+          <End Type="InventoryEntities.DataPenjualan" Role="DataPenjualan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPesanan">
+              <PropertyRef Name="No_Pesanan" />
+            </Principal>
+            <Dependent Role="DataPenjualan">
+              <PropertyRef Name="No_Pesanan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailPesanan_DataPesanan">
+          <End Type="InventoryEntities.DataPesanan" Role="DataPesanan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="InventoryEntities.DetailPesanan" Role="DetailPesanan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPesanan">
+              <PropertyRef Name="No_Pesanan" />
+            </Principal>
+            <Dependent Role="DetailPesanan">
+              <PropertyRef Name="No_Pesanan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBEntitiesStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="DataBarang">
+            <EntityTypeMapping TypeName="InventoryEntities.DataBarang">
+              <MappingFragment StoreEntitySet="DataBarang">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Harga_Jual" ColumnName="Harga Jual" />
+                <ScalarProperty Name="Harga_beli" ColumnName="Harga beli" />
+                <ScalarProperty Name="Satuan" ColumnName="Satuan" />
+                <ScalarProperty Name="Stok" ColumnName="Stok" />
+                <ScalarProperty Name="Kode_Kelompok" ColumnName="Kode Kelompok" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama Barang" />
+                <ScalarProperty Name="Kode_Barang" ColumnName="Kode Barang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DataKelompok">
             <EntityTypeMapping TypeName="InventoryEntities.DataKelompok">
               <MappingFragment StoreEntitySet="DataKelompok">
@@ -648,6 +829,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DataPembelian">
+            <EntityTypeMapping TypeName="InventoryEntities.DataPembelian">
+              <MappingFragment StoreEntitySet="DataPembelian">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Digunakan" ColumnName="Digunakan" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PPN2" ColumnName="PPN2" />
+                <ScalarProperty Name="Diskon2" ColumnName="Diskon2" />
+                <ScalarProperty Name="PPN1" ColumnName="PPN1" />
+                <ScalarProperty Name="Diskon1" ColumnName="Diskon1" />
+                <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+                <ScalarProperty Name="Tanggal" ColumnName="Tanggal" />
+                <ScalarProperty Name="Kode_Supplier" ColumnName="Kode Supplier" />
+                <ScalarProperty Name="No_Pembelian" ColumnName="No Pembelian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataPenjualan">
+            <EntityTypeMapping TypeName="InventoryEntities.DataPenjualan">
+              <MappingFragment StoreEntitySet="DataPenjualan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Panjar" ColumnName="Panjar" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PPN2" ColumnName="PPN2" />
+                <ScalarProperty Name="PPN1" ColumnName="PPN1" />
+                <ScalarProperty Name="Diskon2" ColumnName="Diskon2" />
+                <ScalarProperty Name="Diskon1" ColumnName="Diskon1" />
+                <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+                <ScalarProperty Name="Jatuh_Tempo" ColumnName="Jatuh Tempo" />
+                <ScalarProperty Name="Kode_Pelanggan" ColumnName="Kode Pelanggan" />
+                <ScalarProperty Name="No_Pesanan" ColumnName="No Pesanan" />
+                <ScalarProperty Name="Jenis" ColumnName="Jenis" />
+                <ScalarProperty Name="Tanggal" ColumnName="Tanggal" />
+                <ScalarProperty Name="No_Penjualan" ColumnName="No Penjualan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DataPesanan">
             <EntityTypeMapping TypeName="InventoryEntities.DataPesanan">
               <MappingFragment StoreEntitySet="DataPesanan">
@@ -666,11 +886,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DataPiutang">
+            <EntityTypeMapping TypeName="InventoryEntities.DataPiutang">
+              <MappingFragment StoreEntitySet="DataPiutang">
+                <ScalarProperty Name="Jatuh_Tempo" ColumnName="Jatuh Tempo" />
+                <ScalarProperty Name="Total_Bayar" ColumnName="Total Bayar" />
+                <ScalarProperty Name="Panjar" ColumnName="Panjar" />
+                <ScalarProperty Name="Nilai" ColumnName="Nilai" />
+                <ScalarProperty Name="Kode_Pelanggan" ColumnName="Kode Pelanggan" />
+                <ScalarProperty Name="No_Piutang" ColumnName="No Piutang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataSupplier">
+            <EntityTypeMapping TypeName="InventoryEntities.DataSupplier">
+              <MappingFragment StoreEntitySet="DataSupplier">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Telepon" ColumnName="Telepon" />
+                <ScalarProperty Name="Kota" ColumnName="Kota" />
+                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+                <ScalarProperty Name="Nama_Supplier" ColumnName="Nama Supplier" />
+                <ScalarProperty Name="Kode_Supplier" ColumnName="Kode Supplier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DataUser">
             <EntityTypeMapping TypeName="InventoryEntities.DataUser">
               <MappingFragment StoreEntitySet="DataUser">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="User_Name" ColumnName="User Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailPembelian">
+            <EntityTypeMapping TypeName="InventoryEntities.DetailPembelian">
+              <MappingFragment StoreEntitySet="DetailPembelian">
+                <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Satuan" ColumnName="Satuan" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama Barang" />
+                <ScalarProperty Name="Kode_Barang" ColumnName="Kode Barang" />
+                <ScalarProperty Name="No_Pembelian" ColumnName="No Pembelian" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -708,67 +967,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DataSupplier">
-            <EntityTypeMapping TypeName="InventoryEntities.DataSupplier">
-              <MappingFragment StoreEntitySet="DataSupplier">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
-                <ScalarProperty Name="Telepon" ColumnName="Telepon" />
-                <ScalarProperty Name="Kota" ColumnName="Kota" />
-                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
-                <ScalarProperty Name="Nama_Supplier" ColumnName="Nama Supplier" />
-                <ScalarProperty Name="Kode_Supplier" ColumnName="Kode Supplier" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DataBarang">
-            <EntityTypeMapping TypeName="InventoryEntities.DataBarang">
-              <MappingFragment StoreEntitySet="DataBarang">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
-                <ScalarProperty Name="Harga_Jual" ColumnName="Harga Jual" />
-                <ScalarProperty Name="Harga_beli" ColumnName="Harga beli" />
-                <ScalarProperty Name="Satuan" ColumnName="Satuan" />
-                <ScalarProperty Name="Stok" ColumnName="Stok" />
-                <ScalarProperty Name="Kode_Kelompok" ColumnName="Kode Kelompok" />
-                <ScalarProperty Name="Nama_Barang" ColumnName="Nama Barang" />
-                <ScalarProperty Name="Kode_Barang" ColumnName="Kode Barang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DataPenjualan">
-            <EntityTypeMapping TypeName="InventoryEntities.DataPenjualan">
-              <MappingFragment StoreEntitySet="DataPenjualan">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
-                <ScalarProperty Name="Panjar" ColumnName="Panjar" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="PPN2" ColumnName="PPN2" />
-                <ScalarProperty Name="PPN1" ColumnName="PPN1" />
-                <ScalarProperty Name="Diskon2" ColumnName="Diskon2" />
-                <ScalarProperty Name="Diskon1" ColumnName="Diskon1" />
-                <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
-                <ScalarProperty Name="Jatuh_Tempo" ColumnName="Jatuh Tempo" />
-                <ScalarProperty Name="Kode_Pelanggan" ColumnName="Kode Pelanggan" />
-                <ScalarProperty Name="No_Pesanan" ColumnName="No Pesanan" />
-                <ScalarProperty Name="Jenis" ColumnName="Jenis" />
-                <ScalarProperty Name="Tanggal" ColumnName="Tanggal" />
-                <ScalarProperty Name="No_Penjualan" ColumnName="No Penjualan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DataPiutang">
-            <EntityTypeMapping TypeName="InventoryEntities.DataPiutang">
-              <MappingFragment StoreEntitySet="DataPiutang">
-                <ScalarProperty Name="Jatuh_Tempo" ColumnName="Jatuh Tempo" />
-                <ScalarProperty Name="Total_Bayar" ColumnName="Total Bayar" />
-                <ScalarProperty Name="Panjar" ColumnName="Panjar" />
-                <ScalarProperty Name="Nilai" ColumnName="Nilai" />
-                <ScalarProperty Name="Kode_Pelanggan" ColumnName="Kode Pelanggan" />
-                <ScalarProperty Name="No_Piutang" ColumnName="No Piutang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
