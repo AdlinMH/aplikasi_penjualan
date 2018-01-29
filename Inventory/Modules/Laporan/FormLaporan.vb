@@ -6,7 +6,6 @@
     Private _cls As Object
     Private _ReportName As ReportName
 
-
 #End Region
 
 #Region "Constructor"
@@ -41,6 +40,11 @@
             lblTitle.Text = "Laporan Penjualan"
             reportFile = "Laporan Penjualan.rpt"
             _cls = New ClassLaporanPenjualan(_db)
+
+        ElseIf _ReportName = ReportName.Pelunasan Then
+            lblTitle.Text = "Laporan Pelunasan Kredit"
+            reportFile = "Laporan Pelunasan Kredit.rpt"
+            _cls = New ClassLaporanPelunasanKredit(_db)
 
         End If
 

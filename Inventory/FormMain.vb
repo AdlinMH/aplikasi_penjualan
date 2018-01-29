@@ -5,6 +5,7 @@ Public Enum ReportName
     Barang
     Pelanggan
     Penjualan
+    Pelunasan
 End Enum
 
 Public Class FormMain
@@ -157,17 +158,8 @@ Public Class FormMain
     End Sub
 
     Private Sub PenjualanKreditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PenjualanKreditToolStripMenuItem.Click
-        'Dim cls = New ClassPelunasan()
-        'Dim list = cls.GetModelFromDT(cls.GetDataList())
-        'Dim rpt = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-        'Dim path = CurDir() + "\Laporan\"
-        'rpt.Load(path + "Laporan Pelunasan Kredit.rpt", CrystalDecisions.Shared.OpenReportMethod.OpenReportByDefault)
-        'rpt.Refresh()
-
-        'rpt.SetDataSource(list)
-
-        'Dim view = New FormLaporan("Laporan Pelunasan Kredit", rpt)
-        'view.ShowDialog()
+        Dim view = New FormLaporan(ReportName.Pelunasan)
+        view.ShowDialog()
     End Sub
     Private Sub FormMain_Shown(sender As Object, e As EventArgs)
 
