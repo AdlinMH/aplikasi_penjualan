@@ -19,13 +19,11 @@ Partial Class FormPenjualan
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.dtTempo = New System.Windows.Forms.DateTimePicker()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cbJenis = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbKode = New System.Windows.Forms.TextBox()
@@ -38,7 +36,23 @@ Partial Class FormPenjualan
         Me.tbPelanggan = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tbPesanan = New System.Windows.Forms.TextBox()
+        Me.panelKredit = New System.Windows.Forms.Panel()
+        Me.dtTempo = New System.Windows.Forms.DateTimePicker()
+        Me.cbTermin = New System.Windows.Forms.ComboBox()
+        Me.tbDibayarkan = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.gvData = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnSimpan = New System.Windows.Forms.Button()
@@ -59,17 +73,10 @@ Partial Class FormPenjualan
         Me.Label8 = New System.Windows.Forms.Label()
         Me.tbPanjar = New System.Windows.Forms.TextBox()
         Me.tbSisa = New System.Windows.Forms.TextBox()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel5.SuspendLayout()
         CType(Me.errMessage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel6.SuspendLayout()
+        Me.panelKredit.SuspendLayout()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel8.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -77,11 +84,11 @@ Partial Class FormPenjualan
         '
         'PanelHeader
         '
-        Me.PanelHeader.Size = New System.Drawing.Size(557, 10)
+        Me.PanelHeader.Size = New System.Drawing.Size(603, 10)
         '
         'lblTitle
         '
-        Me.lblTitle.Size = New System.Drawing.Size(557, 50)
+        Me.lblTitle.Size = New System.Drawing.Size(603, 50)
         Me.lblTitle.Text = "Penjualan"
         '
         'Panel5
@@ -90,15 +97,13 @@ Partial Class FormPenjualan
         Me.Panel5.Controls.Add(Me.gvData)
         Me.Panel5.Controls.Add(Me.Panel8)
         Me.Panel5.Controls.Add(Me.Panel6)
-        Me.Panel5.Size = New System.Drawing.Size(557, 628)
+        Me.Panel5.Size = New System.Drawing.Size(603, 628)
         '
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(185, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.Panel6.Controls.Add(Me.dtTempo)
         Me.Panel6.Controls.Add(Me.Label9)
         Me.Panel6.Controls.Add(Me.cbJenis)
-        Me.Panel6.Controls.Add(Me.Label6)
         Me.Panel6.Controls.Add(Me.Label5)
         Me.Panel6.Controls.Add(Me.Label1)
         Me.Panel6.Controls.Add(Me.tbKode)
@@ -111,19 +116,12 @@ Partial Class FormPenjualan
         Me.Panel6.Controls.Add(Me.tbPelanggan)
         Me.Panel6.Controls.Add(Me.Label2)
         Me.Panel6.Controls.Add(Me.tbPesanan)
+        Me.Panel6.Controls.Add(Me.panelKredit)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(557, 233)
+        Me.Panel6.Size = New System.Drawing.Size(603, 209)
         Me.Panel6.TabIndex = 22
-        '
-        'dtTempo
-        '
-        Me.dtTempo.Enabled = False
-        Me.dtTempo.Location = New System.Drawing.Point(394, 42)
-        Me.dtTempo.Name = "dtTempo"
-        Me.dtTempo.Size = New System.Drawing.Size(147, 20)
-        Me.dtTempo.TabIndex = 30
         '
         'Label9
         '
@@ -142,19 +140,9 @@ Partial Class FormPenjualan
         Me.cbJenis.Items.AddRange(New Object() {"Tunai", "Kredit"})
         Me.cbJenis.Location = New System.Drawing.Point(108, 42)
         Me.cbJenis.Name = "cbJenis"
-        Me.cbJenis.Size = New System.Drawing.Size(82, 21)
+        Me.cbJenis.Size = New System.Drawing.Size(62, 21)
         Me.cbJenis.TabIndex = 28
         Me.cbJenis.Text = "Tunai"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(325, 45)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(69, 13)
-        Me.Label6.TabIndex = 26
-        Me.Label6.Text = "Jatuh Tempo"
         '
         'Label5
         '
@@ -202,7 +190,7 @@ Partial Class FormPenjualan
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(9, 146)
+        Me.Label3.Location = New System.Drawing.Point(9, 130)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(39, 13)
         Me.Label3.TabIndex = 20
@@ -211,17 +199,17 @@ Partial Class FormPenjualan
         'rtbAlamat
         '
         Me.rtbAlamat.Enabled = False
-        Me.rtbAlamat.Location = New System.Drawing.Point(12, 162)
+        Me.rtbAlamat.Location = New System.Drawing.Point(88, 130)
         Me.rtbAlamat.Name = "rtbAlamat"
-        Me.rtbAlamat.Size = New System.Drawing.Size(308, 56)
+        Me.rtbAlamat.Size = New System.Drawing.Size(219, 56)
         Me.rtbAlamat.TabIndex = 19
         Me.rtbAlamat.Text = ""
         '
         'dtTanggal
         '
-        Me.dtTanggal.Location = New System.Drawing.Point(394, 10)
+        Me.dtTanggal.Location = New System.Drawing.Point(423, 12)
         Me.dtTanggal.Name = "dtTanggal"
-        Me.dtTanggal.Size = New System.Drawing.Size(147, 20)
+        Me.dtTanggal.Size = New System.Drawing.Size(158, 20)
         Me.dtTanggal.TabIndex = 18
         '
         'tbNamaPelanggan
@@ -229,9 +217,9 @@ Partial Class FormPenjualan
         Me.tbNamaPelanggan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbNamaPelanggan.Enabled = False
         Me.tbNamaPelanggan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbNamaPelanggan.Location = New System.Drawing.Point(88, 119)
+        Me.tbNamaPelanggan.Location = New System.Drawing.Point(164, 101)
         Me.tbNamaPelanggan.Name = "tbNamaPelanggan"
-        Me.tbNamaPelanggan.Size = New System.Drawing.Size(200, 20)
+        Me.tbNamaPelanggan.Size = New System.Drawing.Size(143, 20)
         Me.tbNamaPelanggan.TabIndex = 8
         '
         'Label4
@@ -249,7 +237,7 @@ Partial Class FormPenjualan
         Me.tbPelanggan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbPelanggan.Enabled = False
         Me.tbPelanggan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbPelanggan.Location = New System.Drawing.Point(12, 119)
+        Me.tbPelanggan.Location = New System.Drawing.Point(88, 101)
         Me.tbPelanggan.Name = "tbPelanggan"
         Me.tbPelanggan.Size = New System.Drawing.Size(70, 20)
         Me.tbPelanggan.TabIndex = 7
@@ -274,6 +262,90 @@ Partial Class FormPenjualan
         Me.tbPesanan.Size = New System.Drawing.Size(70, 20)
         Me.tbPesanan.TabIndex = 3
         '
+        'panelKredit
+        '
+        Me.panelKredit.Controls.Add(Me.dtTempo)
+        Me.panelKredit.Controls.Add(Me.cbTermin)
+        Me.panelKredit.Controls.Add(Me.tbDibayarkan)
+        Me.panelKredit.Controls.Add(Me.Label6)
+        Me.panelKredit.Controls.Add(Me.Label15)
+        Me.panelKredit.Controls.Add(Me.Label16)
+        Me.panelKredit.Controls.Add(Me.Label14)
+        Me.panelKredit.Location = New System.Drawing.Point(315, 64)
+        Me.panelKredit.Name = "panelKredit"
+        Me.panelKredit.Size = New System.Drawing.Size(276, 109)
+        Me.panelKredit.TabIndex = 31
+        '
+        'dtTempo
+        '
+        Me.dtTempo.Enabled = False
+        Me.dtTempo.Location = New System.Drawing.Point(109, 42)
+        Me.dtTempo.Name = "dtTempo"
+        Me.dtTempo.Size = New System.Drawing.Size(158, 20)
+        Me.dtTempo.TabIndex = 30
+        '
+        'cbTermin
+        '
+        Me.cbTermin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbTermin.FormattingEnabled = True
+        Me.cbTermin.Items.AddRange(New Object() {"1", "2", "3", "6", "9", "12"})
+        Me.cbTermin.Location = New System.Drawing.Point(109, 12)
+        Me.cbTermin.Name = "cbTermin"
+        Me.cbTermin.Size = New System.Drawing.Size(40, 21)
+        Me.cbTermin.TabIndex = 28
+        Me.cbTermin.Text = "1"
+        '
+        'tbDibayarkan
+        '
+        Me.tbDibayarkan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbDibayarkan.Enabled = False
+        Me.tbDibayarkan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.tbDibayarkan.Location = New System.Drawing.Point(109, 73)
+        Me.tbDibayarkan.Name = "tbDibayarkan"
+        Me.tbDibayarkan.Size = New System.Drawing.Size(158, 20)
+        Me.tbDibayarkan.TabIndex = 3
+        Me.tbDibayarkan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(11, 45)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(69, 13)
+        Me.Label6.TabIndex = 26
+        Me.Label6.Text = "Jatuh Tempo"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.Label15.Location = New System.Drawing.Point(11, 76)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(95, 13)
+        Me.Label15.TabIndex = 26
+        Me.Label15.Text = "Cicilan Dibayarkan"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.Label16.Location = New System.Drawing.Point(156, 15)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(41, 13)
+        Me.Label16.TabIndex = 26
+        Me.Label16.Text = "/ bulan"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.Label14.Location = New System.Drawing.Point(11, 15)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(74, 13)
+        Me.Label14.TabIndex = 26
+        Me.Label14.Text = "Jumlah Cicilan"
+        '
         'gvData
         '
         Me.gvData.AllowUserToAddRows = False
@@ -282,37 +354,96 @@ Partial Class FormPenjualan
         Me.gvData.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.gvData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.gvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.gvData.ColumnHeadersHeight = 35
         Me.gvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.gvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column8, Me.Column2, Me.Column3, Me.Column7, Me.Column5, Me.Column4, Me.Column6})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gvData.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gvData.DefaultCellStyle = DataGridViewCellStyle4
         Me.gvData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvData.EnableHeadersVisualStyles = False
         Me.gvData.GridColor = System.Drawing.SystemColors.ControlLight
-        Me.gvData.Location = New System.Drawing.Point(0, 233)
+        Me.gvData.Location = New System.Drawing.Point(0, 209)
         Me.gvData.MultiSelect = False
         Me.gvData.Name = "gvData"
         Me.gvData.ReadOnly = True
         Me.gvData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.gvData.RowHeadersVisible = False
         Me.gvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gvData.Size = New System.Drawing.Size(557, 330)
+        Me.gvData.Size = New System.Drawing.Size(603, 354)
         Me.gvData.TabIndex = 24
+        '
+        'Column1
+        '
+        Me.Column1.DataPropertyName = "ID"
+        Me.Column1.HeaderText = "ID"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Visible = False
+        '
+        'Column8
+        '
+        Me.Column8.DataPropertyName = "NoPenjualan"
+        Me.Column8.HeaderText = "NoPenjualan"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        Me.Column8.Visible = False
+        '
+        'Column2
+        '
+        Me.Column2.DataPropertyName = "KodeBarang"
+        Me.Column2.HeaderText = "Kode Barang"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Visible = False
+        '
+        'Column3
+        '
+        Me.Column3.DataPropertyName = "Nama_Barang"
+        Me.Column3.HeaderText = "Nama Barang"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.DataPropertyName = "Qty"
+        Me.Column7.HeaderText = "Qty"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column5
+        '
+        Me.Column5.DataPropertyName = "Satuan"
+        Me.Column5.HeaderText = "Satuan"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column4
+        '
+        Me.Column4.DataPropertyName = "Harga"
+        Me.Column4.HeaderText = "Harga"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.DataPropertyName = "Sub_Total"
+        Me.Column6.HeaderText = "Sub Total"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
         '
         'Panel8
         '
@@ -324,7 +455,7 @@ Partial Class FormPenjualan
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel8.Location = New System.Drawing.Point(0, 563)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(557, 65)
+        Me.Panel8.Size = New System.Drawing.Size(603, 65)
         Me.Panel8.TabIndex = 25
         '
         'Button1
@@ -354,7 +485,7 @@ Partial Class FormPenjualan
         Me.btnSimpan.ForeColor = System.Drawing.Color.White
         Me.btnSimpan.Image = Global.Inventory.My.Resources.Resources.ic_save_white_48dp_1x
         Me.btnSimpan.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnSimpan.Location = New System.Drawing.Point(362, 0)
+        Me.btnSimpan.Location = New System.Drawing.Point(408, 0)
         Me.btnSimpan.Margin = New System.Windows.Forms.Padding(0)
         Me.btnSimpan.Name = "btnSimpan"
         Me.btnSimpan.Size = New System.Drawing.Size(65, 65)
@@ -372,7 +503,7 @@ Partial Class FormPenjualan
         Me.btnBatal.ForeColor = System.Drawing.Color.White
         Me.btnBatal.Image = Global.Inventory.My.Resources.Resources.ic_cancel_white_48dp_1x
         Me.btnBatal.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnBatal.Location = New System.Drawing.Point(427, 0)
+        Me.btnBatal.Location = New System.Drawing.Point(473, 0)
         Me.btnBatal.Margin = New System.Windows.Forms.Padding(0)
         Me.btnBatal.Name = "btnBatal"
         Me.btnBatal.Size = New System.Drawing.Size(65, 65)
@@ -390,7 +521,7 @@ Partial Class FormPenjualan
         Me.btnTutup.ForeColor = System.Drawing.Color.White
         Me.btnTutup.Image = Global.Inventory.My.Resources.Resources.ic_exit_to_app_white_48dp_1x
         Me.btnTutup.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnTutup.Location = New System.Drawing.Point(492, 0)
+        Me.btnTutup.Location = New System.Drawing.Point(538, 0)
         Me.btnTutup.Margin = New System.Windows.Forms.Padding(0)
         Me.btnTutup.Name = "btnTutup"
         Me.btnTutup.Size = New System.Drawing.Size(65, 65)
@@ -417,9 +548,9 @@ Partial Class FormPenjualan
         Me.Panel1.Controls.Add(Me.tbPanjar)
         Me.Panel1.Controls.Add(Me.tbSisa)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 401)
+        Me.Panel1.Location = New System.Drawing.Point(0, 390)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(557, 162)
+        Me.Panel1.Size = New System.Drawing.Size(603, 173)
         Me.Panel1.TabIndex = 26
         '
         'tbPPN1
@@ -573,74 +704,17 @@ Partial Class FormPenjualan
         Me.tbSisa.Text = "0"
         Me.tbSisa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Column1
-        '
-        Me.Column1.DataPropertyName = "ID"
-        Me.Column1.HeaderText = "ID"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Visible = False
-        '
-        'Column8
-        '
-        Me.Column8.DataPropertyName = "NoPenjualan"
-        Me.Column8.HeaderText = "NoPenjualan"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        Me.Column8.Visible = False
-        '
-        'Column2
-        '
-        Me.Column2.DataPropertyName = "KodeBarang"
-        Me.Column2.HeaderText = "Kode Barang"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Visible = False
-        '
-        'Column3
-        '
-        Me.Column3.DataPropertyName = "Nama_Barang"
-        Me.Column3.HeaderText = "Nama Barang"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.DataPropertyName = "Qty"
-        Me.Column7.HeaderText = "Qty"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column5
-        '
-        Me.Column5.DataPropertyName = "Satuan"
-        Me.Column5.HeaderText = "Satuan"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column4
-        '
-        Me.Column4.DataPropertyName = "Harga"
-        Me.Column4.HeaderText = "Harga"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.DataPropertyName = "Sub_Total"
-        Me.Column6.HeaderText = "Sub Total"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
         'FormPenjualan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(557, 688)
+        Me.ClientSize = New System.Drawing.Size(603, 688)
         Me.Name = "FormPenjualan"
         Me.Panel5.ResumeLayout(False)
         CType(Me.errMessage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
+        Me.panelKredit.ResumeLayout(False)
+        Me.panelKredit.PerformLayout()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -695,4 +769,10 @@ Partial Class FormPenjualan
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Label14 As Label
+    Friend WithEvents panelKredit As Panel
+    Friend WithEvents tbDibayarkan As TextBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents cbTermin As ComboBox
+    Friend WithEvents Label16 As Label
 End Class

@@ -372,7 +372,7 @@ Partial Class FormPembelian
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(3, 36)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.Size = New System.Drawing.Size(45, 13)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Supplier"
         '
@@ -392,7 +392,7 @@ Partial Class FormPembelian
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(3, 10)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(66, 13)
+        Me.Label2.Size = New System.Drawing.Size(73, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "No Pembelian"
         '
@@ -574,6 +574,7 @@ Partial Class FormPembelian
         Me.btnPrint.Text = "Cetak"
         Me.btnPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btnPrint.UseVisualStyleBackColor = False
+        Me.btnPrint.Visible = False
         '
         'btnTambah
         '

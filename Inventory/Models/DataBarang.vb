@@ -36,9 +36,9 @@ Partial Public Class DataBarang
 
     Public Overridable Property DataKelompok As DataKelompok
 
-    Public Overridable Property DetailPesanan As ICollection(Of DetailPesanan) = New HashSet(Of DetailPesanan)
-
     Public Overridable Property DetailPembelian As ICollection(Of DetailPembelian) = New HashSet(Of DetailPembelian)
+
+    Public Overridable Property DetailPesanan As ICollection(Of DetailPesanan) = New HashSet(Of DetailPesanan)
 
 
 End Class

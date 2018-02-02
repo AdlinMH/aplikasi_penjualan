@@ -16,9 +16,12 @@ Public Class FormPenjualan
     Private _cls As ClassPenjualan
     Private _clsPesanan As ClassPesanan
     Private _clsPiutang As ClassPiutang
+    Private _clsTerminPelunasan As ClassTerminPelunasan
 
     Private _data As DataPenjualan
+    Private _detail As DetailPesanan
     Private _dataDetail As DetailPesanan
+    Private _dataTerminPelunasan As DataTerminPelunasan
     Private _bs As BindingSource
 
     Private _idx As Integer = 0
@@ -32,6 +35,7 @@ Public Class FormPenjualan
         _cls = New ClassPenjualan(_db)
         _clsPesanan = New ClassPesanan(_db)
         _clsPiutang = New ClassPiutang(_db)
+        _clsTerminPelunasan = New ClassTerminPelunasan(_db)
         _bs = New BindingSource()
 
         _data = New DataPenjualan()
@@ -83,34 +87,47 @@ Public Class FormPenjualan
             tbPPN1.Text = _data.DataPesanan.PPN1
             tbPPN2.Text = _data.DataPesanan.PPN2
             tbSubTotal.Text = _data.DataPesanan.Sub_Total
+
+            tbDibayarkan.Text = IIf(tbTotal.Text <> "", Math.Ceiling(Convert.ToDecimal(tbTotal.Text) / Convert.ToDecimal(cbTermin.Text)), "")
         End If
     End Sub
 
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
         If ValidateChildren(ValidationConstraints.Enabled) Then
-            ViewToModel()
-            _cls.Data = _data
-            _cls.AddOrUpdate()
+            Try
+                ViewToModel()
+                _cls.Data = _data
+                _cls.AddOrUpdate()
 
-            _data.DataPesanan.Digunakan = "Y"
-            _clsPesanan.Data = _data.DataPesanan
-            _clsPesanan.AddOrUpdate()
+                _data.DataPesanan.Digunakan = "Y"
+                _clsPesanan.Data = _data.DataPesanan
+                _clsPesanan.AddOrUpdate()
 
-            If (_data.Jenis = "Kredit") Then
-                Dim dataPiutang = New DataPiutang()
-                dataPiutang.Nilai = _data.Total
-                dataPiutang.Jatuh_Tempo = _data.Jatuh_Tempo
-                dataPiutang.Kode_Pelanggan = _data.Kode_Pelanggan
-                dataPiutang.No_Piutang = _data.No_Penjualan
-                dataPiutang.Panjar = _data.Panjar
-                dataPiutang.Total_Bayar = 0
-                _clsPiutang.Data = dataPiutang
-                _clsPiutang.AddOrUpdate()
-            End If
+                If (_data.Jenis = "Kredit") Then
+                    Dim dataPiutang = New DataPiutang()
+                    dataPiutang.Nilai = _data.Total
+                    dataPiutang.Jatuh_Tempo = _data.Jatuh_Tempo
+                    dataPiutang.Kode_Pelanggan = _data.Kode_Pelanggan
+                    dataPiutang.No_Piutang = _data.No_Penjualan
+                    dataPiutang.Panjar = _data.Panjar
+                    dataPiutang.Total_Bayar = 0
+                    _clsPiutang.Data = dataPiutang
+                    _clsPiutang.AddOrUpdate()
 
-            MessageBox.Show("Data Sudah Tersimpan")
+                    Dim dataTerminPelunasan = New DataTerminPelunasan()
+                    dataTerminPelunasan.No_Termin = _data.No_Penjualan.Replace("PJL", "TPL")
+                    dataTerminPelunasan.No_Penjualan = _data.No_Penjualan
+                    dataTerminPelunasan.Jumlah_Termin = Convert.ToInt32(cbTermin.Text)
+                    _clsTerminPelunasan.Data = dataTerminPelunasan
+                    _clsTerminPelunasan.AddOrUpdate()
+                End If
+
+                MessageBox.Show("Data Sudah Tersimpan")
                 Close()
-            End If
+            Catch ex As Exception
+                MessageBox.Show("Terjadi kesalahan. mohon periksa dan lengkapi input atau hubungi Administrator")
+            End Try
+        End If
     End Sub
 
     Private Sub ViewToModel()
@@ -174,8 +191,10 @@ Public Class FormPenjualan
         If (cbJenis.Text = "Tunai") Then
             tbPanjar.Enabled = False
             tbPanjar.Text = "0"
+            panelKredit.Visible = False
         Else
             tbPanjar.Enabled = True
+            panelKredit.Visible = True
         End If
     End Sub
 
@@ -185,5 +204,39 @@ Public Class FormPenjualan
 
     Private Sub btnTutup_Click(sender As Object, e As EventArgs) Handles btnTutup.Click
         Close()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim rpt = New ReportDocument()
+        rpt.Load(CurDir() + "\Modules\Laporan\" + "Faktur Penjualan.rpt")
+        rpt.Refresh()
+
+        rpt.SetDataSource(_data.DataPesanan.DetailPesanan.ToList())
+        rpt.SetParameterValue("Nama Pelanggan", tbNamaPelanggan.Text)
+        rpt.SetParameterValue("Alamat", rtbAlamat.Text)
+        rpt.SetParameterValue("Tanggal", dtTanggal.Value)
+        rpt.SetParameterValue("Sub Total", tbSubTotal.Text)
+        rpt.SetParameterValue("Diskon", tbDiskon2.Text)
+        rpt.SetParameterValue("PPN", tbPPN2.Text)
+        rpt.SetParameterValue("Total", tbTotal.Text)
+
+        rpt.SetParameterValue("Panjar", tbPanjar.Text)
+
+        rpt.SetParameterValue("Sisa", tbSisa.Text)
+        rpt.SetParameterValue("Jenis", cbJenis.Text)
+        rpt.SetParameterValue("No Penjualan", tbKode.Text)
+
+
+        Dim view = New FormLaporan(ReportName.FakturPemesanan, rpt)
+        view.ShowDialog()
+    End Sub
+
+    Private Sub cbTermin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTermin.SelectedIndexChanged
+        dtTempo.Value = dtTempo.Value.AddMonths(Convert.ToInt32(cbTermin.Text))
+        tbDibayarkan.Text = IIf(tbTotal.Text <> "", Math.Ceiling(Convert.ToDecimal(tbTotal.Text) / Convert.ToDecimal(cbTermin.Text)), "")
+    End Sub
+
+    Private Sub dtTanggal_ValueChanged(sender As Object, e As EventArgs) Handles dtTanggal.ValueChanged
+        dtTempo.Value = dtTanggal.Value.AddMonths(Convert.ToInt32(cbTermin.Text))
     End Sub
 End Class

@@ -1,4 +1,4 @@
-﻿' T4 code generation is enabled for model 'D:\Adlin\#GIT\New folder\temp_v9\Inventory\Models\ModelEntities.edmx'. 
+﻿' T4 code generation is enabled for model 'D:\1KOFGU2Hk6c0NaT0XhWXwlqa_UPSiHPld\master-31012018\Inventory\Models\ModelEntities.edmx'. 
 ' To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 ' property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 ' is open in the designer.

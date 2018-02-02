@@ -6,6 +6,10 @@ Public Enum ReportName
     Pelanggan
     Penjualan
     Pelunasan
+    Pembelian
+    FakturPemesanan
+    FakturPenjualan
+    FakturPembelian
 End Enum
 
 Public Class FormMain
@@ -69,8 +73,7 @@ Public Class FormMain
         frm.MdiParent = Me
         frm.Show()
     End Sub
-
-    Private Sub TransaksiPelunanasanKreditToolStripMenuItem_Click(sender As Object, e As EventArgs)
+    Private Sub TransaksiPelunanasanKreditToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles TransaksiPelunanasanKreditToolStripMenuItem.Click
         Dim frm = New FormDaftarPesanan()
         If IsFormOpen(frm) Then
             Return
@@ -88,7 +91,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs)
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
         Dim frm = New FormDaftarPenjualan()
         If IsFormOpen(frm) Then
             Return
@@ -97,7 +100,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs)
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
         Dim frm = New FormDaftarPelunasanKredit()
         If IsFormOpen(frm) Then
             Return
@@ -124,7 +127,7 @@ Public Class FormMain
         frm.Show()
     End Sub
 
-    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs)
+    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
         Dim frm = New FormDaftarPiutang()
         If IsFormOpen(frm) Then
             Return
@@ -144,15 +147,6 @@ Public Class FormMain
     End Sub
 
     Private Sub PenjualanTunaiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PenjualanTunaiToolStripMenuItem.Click
-        'Dim cls = New ClassPenjualan()
-        'Dim list = cls.GetModelFromDT(cls.GetDataList())
-        'Dim rpt = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-        'Dim path = CurDir() + "\Laporan\"
-        'rpt.Load(path + "Laporan Penjualan.rpt", CrystalDecisions.Shared.OpenReportMethod.OpenReportByDefault)
-        'rpt.Refresh()
-
-        'rpt.SetDataSource(list)
-
         Dim view = New FormLaporan(ReportName.Penjualan)
         view.ShowDialog()
     End Sub
@@ -161,9 +155,11 @@ Public Class FormMain
         Dim view = New FormLaporan(ReportName.Pelunasan)
         view.ShowDialog()
     End Sub
-    Private Sub FormMain_Shown(sender As Object, e As EventArgs)
-
+    Private Sub ToolStripMenuItem10_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem10.Click
+        Dim view = New FormLaporan(ReportName.Pembelian)
+        view.ShowDialog()
     End Sub
+
 
     Private Sub GantiPasswordToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GantiPasswordToolStripMenuItem1.Click
         Dim frm = New FormGantiPassword()
@@ -191,6 +187,26 @@ Public Class FormMain
         End If
         frm.MdiParent = Me
         frm.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem9.Click
+        Dim frm = New FormDaftarPembelian()
+        If IsFormOpen(frm) Then
+            Return
+        End If
+        frm.MdiParent = Me
+        frm.Show()
+    End Sub
+
+    Private Sub FormMain_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Dim frm = New FormLogin()
+        frm.ShowDialog()
+        If (frm.DialogResult = DialogResult.OK) Then
+            Return
+        Else
+            Close()
+        End If
+
     End Sub
 End Class
 

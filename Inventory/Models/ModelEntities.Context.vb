@@ -54,7 +54,7 @@ Partial Public Class DbEntities
 
     Public Property DetailPesanan() As DbSet(Of DetailPesanan)
 
-    Public Property sysdiagrams() As DbSet(Of sysdiagrams)
+    Public Property DataTerminPelunasan() As DbSet(Of DataTerminPelunasan)
 
 
 End Class

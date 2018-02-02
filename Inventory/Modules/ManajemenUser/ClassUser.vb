@@ -1,8 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ClassUser
-    Private _sqlConn As SqlConnection
-    Public Property Data() As ModelUser
+    Private _db As DbEntities
+    Public Property Data() As DataUser
         Get
             Return _data
         End Get
@@ -10,65 +10,34 @@ Public Class ClassUser
             _data = Value
         End Set
     End Property
-    Private _data As ModelUser
-    Public Sub New(sqlConn As SqlConnection)
-        _data = New ModelUser()
-        _sqlConn = sqlConn
+    Private _data As DataUser
+    Public Sub New(db)
+        _data = New DataUser()
+        _db = db
     End Sub
 
     Public Function IsAuthorized() As Boolean
-        Dim sqlCmd As SqlCommand
-        Dim sql As String
-        Dim sda As SqlDataAdapter
-        Dim dt As DataTable
+        Dim user = _db.DataUser.Where(Function(x) x.User_Name = _data.User_Name And x.Password = _data.Password)
 
-        sql = "SELECT * FROM dbo.DataUser WHERE [User Name] = @id AND [Password] = @pass"
-        sqlCmd = New SqlCommand(sql, _sqlConn)
-        sqlCmd.CommandType = CommandType.Text
-        sqlCmd.Parameters.Add("@id", SqlDbType.VarChar).Value = _data.UserName
-        sqlCmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = _data.Password
-
-        If _sqlConn.State = ConnectionState.Closed Then
-            _sqlConn.Open()
-        End If
-
-        sda = New SqlDataAdapter(sqlCmd)
-        dt = New DataTable()
-        sda.Fill(dt)
-        sda.Dispose()
-
-        Try
-            Return dt.Rows(0).ItemArray.Count > 0
-        Catch ex As Exception
+        If (IsNothing(user)) Then
             Return False
-        End Try
+        Else
+            Return True
+        End If
 
     End Function
 
     Public Function GantiPassword(user1 As String, user2 As String, pass1 As String, pass2 As String) As Boolean
-        Data = New ModelUser()
+        Data = New DataUser()
         Data.Password = pass1
-        Data.UserName = user1
+        Data.User_Name = user1
         If Not IsAuthorized() Then
             MessageBox.Show("Kombinsasi Nama User dan Password Salah")
             Return False
         End If
 
-        Dim sqlCmd As SqlCommand
-        Dim sql As String
-
-        sql = "Update DataUser set [User Name] = @user, [Password] = @pass where [User Name] = @id"
-        sqlCmd = New SqlCommand(sql, _sqlConn)
-        sqlCmd.CommandType = CommandType.Text
-        sqlCmd.Parameters.Add("@id", SqlDbType.VarChar).Value = user1
-        sqlCmd.Parameters.Add("@user", SqlDbType.VarChar).Value = user2
-        sqlCmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = pass2
-
-        If _sqlConn.State = ConnectionState.Closed Then
-            _sqlConn.Open()
-        End If
-
-        sqlCmd.ExecuteNonQuery()
+        _db.Entry(Data).State = EntityState.Modified
+        _db.SaveChanges()
         Return True
     End Function
 

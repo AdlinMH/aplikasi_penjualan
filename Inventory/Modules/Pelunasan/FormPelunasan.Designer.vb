@@ -35,7 +35,9 @@ Partial Class FormPelunasan
         Me.tbBayar = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tbTotalBayar = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.tbTermin = New System.Windows.Forms.TextBox()
         Me.tbTotalHarga = New System.Windows.Forms.TextBox()
         Me.btnPiutang = New System.Windows.Forms.Button()
         Me.dtTempo = New System.Windows.Forms.DateTimePicker()
@@ -53,17 +55,17 @@ Partial Class FormPelunasan
         '
         'PanelHeader
         '
-        Me.PanelHeader.Size = New System.Drawing.Size(471, 10)
+        Me.PanelHeader.Size = New System.Drawing.Size(509, 10)
         '
         'lblTitle
         '
-        Me.lblTitle.Size = New System.Drawing.Size(471, 50)
+        Me.lblTitle.Size = New System.Drawing.Size(509, 50)
         Me.lblTitle.Text = "Pelunasan"
         '
         'Panel5
         '
         Me.Panel5.Controls.Add(Me.Panel6)
-        Me.Panel5.Size = New System.Drawing.Size(471, 433)
+        Me.Panel5.Size = New System.Drawing.Size(509, 381)
         '
         'Panel6
         '
@@ -79,7 +81,9 @@ Partial Class FormPelunasan
         Me.Panel6.Controls.Add(Me.tbBayar)
         Me.Panel6.Controls.Add(Me.Label5)
         Me.Panel6.Controls.Add(Me.tbTotalBayar)
+        Me.Panel6.Controls.Add(Me.Label10)
         Me.Panel6.Controls.Add(Me.Label2)
+        Me.Panel6.Controls.Add(Me.tbTermin)
         Me.Panel6.Controls.Add(Me.tbTotalHarga)
         Me.Panel6.Controls.Add(Me.btnPiutang)
         Me.Panel6.Controls.Add(Me.dtTempo)
@@ -92,7 +96,7 @@ Partial Class FormPelunasan
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(471, 433)
+        Me.Panel6.Size = New System.Drawing.Size(509, 381)
         Me.Panel6.TabIndex = 23
         '
         'Label9
@@ -107,16 +111,16 @@ Partial Class FormPelunasan
         '
         'dtTanggal
         '
-        Me.dtTanggal.Location = New System.Drawing.Point(312, 10)
+        Me.dtTanggal.Location = New System.Drawing.Point(335, 10)
         Me.dtTanggal.Name = "dtTanggal"
-        Me.dtTanggal.Size = New System.Drawing.Size(147, 20)
+        Me.dtTanggal.Size = New System.Drawing.Size(166, 20)
         Me.dtTanggal.TabIndex = 45
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(9, 261)
+        Me.Label3.Location = New System.Drawing.Point(11, 230)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(27, 13)
         Me.Label3.TabIndex = 43
@@ -127,7 +131,7 @@ Partial Class FormPelunasan
         Me.tbSisa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbSisa.Enabled = False
         Me.tbSisa.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbSisa.Location = New System.Drawing.Point(12, 277)
+        Me.tbSisa.Location = New System.Drawing.Point(100, 228)
         Me.tbSisa.Name = "tbSisa"
         Me.tbSisa.Size = New System.Drawing.Size(147, 20)
         Me.tbSisa.TabIndex = 44
@@ -162,9 +166,9 @@ Partial Class FormPelunasan
         Me.Panel8.Controls.Add(Me.btnBatal)
         Me.Panel8.Controls.Add(Me.btnTutup)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel8.Location = New System.Drawing.Point(0, 368)
+        Me.Panel8.Location = New System.Drawing.Point(0, 316)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(471, 65)
+        Me.Panel8.Size = New System.Drawing.Size(509, 65)
         Me.Panel8.TabIndex = 40
         '
         'Button1
@@ -194,7 +198,7 @@ Partial Class FormPelunasan
         Me.btnSimpan.ForeColor = System.Drawing.Color.White
         Me.btnSimpan.Image = Global.Inventory.My.Resources.Resources.ic_save_white_48dp_1x
         Me.btnSimpan.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnSimpan.Location = New System.Drawing.Point(276, 0)
+        Me.btnSimpan.Location = New System.Drawing.Point(314, 0)
         Me.btnSimpan.Margin = New System.Windows.Forms.Padding(0)
         Me.btnSimpan.Name = "btnSimpan"
         Me.btnSimpan.Size = New System.Drawing.Size(65, 65)
@@ -212,7 +216,7 @@ Partial Class FormPelunasan
         Me.btnBatal.ForeColor = System.Drawing.Color.White
         Me.btnBatal.Image = Global.Inventory.My.Resources.Resources.ic_cancel_white_48dp_1x
         Me.btnBatal.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnBatal.Location = New System.Drawing.Point(341, 0)
+        Me.btnBatal.Location = New System.Drawing.Point(379, 0)
         Me.btnBatal.Margin = New System.Windows.Forms.Padding(0)
         Me.btnBatal.Name = "btnBatal"
         Me.btnBatal.Size = New System.Drawing.Size(65, 65)
@@ -230,7 +234,7 @@ Partial Class FormPelunasan
         Me.btnTutup.ForeColor = System.Drawing.Color.White
         Me.btnTutup.Image = Global.Inventory.My.Resources.Resources.ic_exit_to_app_white_48dp_1x
         Me.btnTutup.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnTutup.Location = New System.Drawing.Point(406, 0)
+        Me.btnTutup.Location = New System.Drawing.Point(444, 0)
         Me.btnTutup.Margin = New System.Windows.Forms.Padding(0)
         Me.btnTutup.Name = "btnTutup"
         Me.btnTutup.Size = New System.Drawing.Size(65, 65)
@@ -243,7 +247,7 @@ Partial Class FormPelunasan
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(9, 309)
+        Me.Label7.Location = New System.Drawing.Point(12, 266)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(34, 13)
         Me.Label7.TabIndex = 38
@@ -253,7 +257,7 @@ Partial Class FormPelunasan
         '
         Me.tbBayar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbBayar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbBayar.Location = New System.Drawing.Point(12, 325)
+        Me.tbBayar.Location = New System.Drawing.Point(100, 264)
         Me.tbBayar.Name = "tbBayar"
         Me.tbBayar.Size = New System.Drawing.Size(147, 20)
         Me.tbBayar.TabIndex = 39
@@ -264,7 +268,7 @@ Partial Class FormPelunasan
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(9, 213)
+        Me.Label5.Location = New System.Drawing.Point(11, 196)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(61, 13)
         Me.Label5.TabIndex = 36
@@ -275,29 +279,51 @@ Partial Class FormPelunasan
         Me.tbTotalBayar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbTotalBayar.Enabled = False
         Me.tbTotalBayar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbTotalBayar.Location = New System.Drawing.Point(12, 229)
+        Me.tbTotalBayar.Location = New System.Drawing.Point(100, 194)
         Me.tbTotalBayar.Name = "tbTotalBayar"
         Me.tbTotalBayar.Size = New System.Drawing.Size(147, 20)
         Me.tbTotalBayar.TabIndex = 37
         Me.tbTotalBayar.Text = "0"
         Me.tbTotalBayar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(9, 162)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(82, 13)
+        Me.Label10.TabIndex = 32
+        Me.Label10.Text = "Pembayaran Ke"
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(9, 165)
+        Me.Label2.Location = New System.Drawing.Point(9, 130)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(63, 13)
         Me.Label2.TabIndex = 32
         Me.Label2.Text = "Total Harga"
+        '
+        'tbTermin
+        '
+        Me.tbTermin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tbTermin.Enabled = False
+        Me.tbTermin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.tbTermin.Location = New System.Drawing.Point(100, 160)
+        Me.tbTermin.Name = "tbTermin"
+        Me.tbTermin.Size = New System.Drawing.Size(46, 20)
+        Me.tbTermin.TabIndex = 33
+        Me.tbTermin.Text = "0"
+        Me.tbTermin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'tbTotalHarga
         '
         Me.tbTotalHarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbTotalHarga.Enabled = False
         Me.tbTotalHarga.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbTotalHarga.Location = New System.Drawing.Point(12, 181)
+        Me.tbTotalHarga.Location = New System.Drawing.Point(100, 128)
         Me.tbTotalHarga.Name = "tbTotalHarga"
         Me.tbTotalHarga.Size = New System.Drawing.Size(147, 20)
         Me.tbTotalHarga.TabIndex = 33
@@ -319,16 +345,16 @@ Partial Class FormPelunasan
         'dtTempo
         '
         Me.dtTempo.Enabled = False
-        Me.dtTempo.Location = New System.Drawing.Point(12, 133)
+        Me.dtTempo.Location = New System.Drawing.Point(335, 49)
         Me.dtTempo.Name = "dtTempo"
-        Me.dtTempo.Size = New System.Drawing.Size(147, 20)
+        Me.dtTempo.Size = New System.Drawing.Size(166, 20)
         Me.dtTempo.TabIndex = 30
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(9, 117)
+        Me.Label6.Location = New System.Drawing.Point(260, 53)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(69, 13)
         Me.Label6.TabIndex = 26
@@ -359,16 +385,16 @@ Partial Class FormPelunasan
         Me.tbNamaPelanggan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbNamaPelanggan.Enabled = False
         Me.tbNamaPelanggan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbNamaPelanggan.Location = New System.Drawing.Point(88, 85)
+        Me.tbNamaPelanggan.Location = New System.Drawing.Point(176, 90)
         Me.tbNamaPelanggan.Name = "tbNamaPelanggan"
-        Me.tbNamaPelanggan.Size = New System.Drawing.Size(200, 20)
+        Me.tbNamaPelanggan.Size = New System.Drawing.Size(154, 20)
         Me.tbNamaPelanggan.TabIndex = 8
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(21, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(9, 69)
+        Me.Label4.Location = New System.Drawing.Point(12, 92)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 6
@@ -379,7 +405,7 @@ Partial Class FormPelunasan
         Me.tbPelanggan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tbPelanggan.Enabled = False
         Me.tbPelanggan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.tbPelanggan.Location = New System.Drawing.Point(12, 85)
+        Me.tbPelanggan.Location = New System.Drawing.Point(100, 90)
         Me.tbPelanggan.Name = "tbPelanggan"
         Me.tbPelanggan.Size = New System.Drawing.Size(70, 20)
         Me.tbPelanggan.TabIndex = 7
@@ -387,7 +413,7 @@ Partial Class FormPelunasan
         'FormPelunasan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(471, 493)
+        Me.ClientSize = New System.Drawing.Size(509, 441)
         Me.Name = "FormPelunasan"
         Me.Panel5.ResumeLayout(False)
         CType(Me.errMessage, System.ComponentModel.ISupportInitialize).EndInit()
@@ -424,4 +450,6 @@ Partial Class FormPelunasan
     Friend WithEvents Button1 As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents dtTanggal As DateTimePicker
+    Friend WithEvents Label10 As Label
+    Friend WithEvents tbTermin As TextBox
 End Class

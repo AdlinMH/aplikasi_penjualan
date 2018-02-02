@@ -91,14 +91,17 @@
     <Compile Include="Models\DataPembelian.vb">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataTerminPelunasan.vb">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DetailPembelian.vb">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Laporan\ClassLaporan.vb" />
-    <Compile Include="Modules\Laporan\test.vb">
+    <Compile Include="Modules\Laporan\Laporan Pembelian.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>test.rpt</DependentUpon>
+      <DependentUpon>Laporan Pembelian.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -203,8 +206,6 @@
     <Compile Include="Models\DetailPesanan.vb">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DLL\ClassDB.vb" />
-    <Compile Include="DLL\DAL.vb" />
     <Compile Include="Modules\Kelompok\FormBrowerKelompok.Designer.vb">
       <DependentUpon>FormBrowerKelompok.vb</DependentUpon>
     </Compile>
@@ -226,7 +227,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Pembelian\ClassPesanan.vb" />
+    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.Designer.vb">
+      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Pembelian\ClassPembelian.vb" />
     <Compile Include="Modules\Pembelian\FormBrowerPembelian.Designer.vb">
       <DependentUpon>FormBrowerPembelian.vb</DependentUpon>
     </Compile>
@@ -243,12 +250,6 @@
       <DependentUpon>FormPembelian.vb</DependentUpon>
     </Compile>
     <Compile Include="Modules\Pembelian\FormPembelian.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.Designer.vb">
-      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Penjualan\FormDaftarPenjualan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Pesanan\FormBrowerPesanan.Designer.vb">
@@ -288,9 +289,6 @@
     <Compile Include="Modules\Pesanan\FormDaftarPesanan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Models\sysdiagrams.vb">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modules\ManajemenUser\ClassUser.vb" />
     <Compile Include="Modules\ManajemenUser\FormGantiPassword.Designer.vb">
       <DependentUpon>FormGantiPassword.vb</DependentUpon>
@@ -321,6 +319,7 @@
     <Compile Include="Modules\Pelunasan\ClassPelunasan.vb" />
     <Compile Include="Modules\Penjualan\ClassPenjualan.vb" />
     <Compile Include="Modules\Pesanan\ClassPesanan.vb" />
+    <Compile Include="Modules\TerminPelunasan\ClassTerminPelunasan.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -395,11 +394,6 @@
     <Compile Include="Modules\ManajemenUser\ModelUser.vb" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Modules\Laporan\test.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>test.vb</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Modules\Barang\FormBrowerBarang.resx">
       <DependentUpon>FormBrowerBarang.vb</DependentUpon>
     </EmbeddedResource>
@@ -447,6 +441,14 @@
     <EmbeddedResource Include="Modules\Kelompok\FormBrowerKelompok.resx">
       <DependentUpon>FormBrowerKelompok.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Laporan\Laporan Pembelian.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Laporan Pembelian.vb</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Penjualan\FormDaftarPenjualan.resx">
+      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Pembelian\FormBrowerPembelian.resx">
       <DependentUpon>FormBrowerPembelian.vb</DependentUpon>
     </EmbeddedResource>
@@ -455,9 +457,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Pembelian\FormPembelian.resx">
       <DependentUpon>FormPembelian.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Penjualan\FormDaftarPenjualan.resx">
-      <DependentUpon>FormDaftarPenjualan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Pesanan\FormBrowerPesanan.resx">
       <DependentUpon>FormBrowerPesanan.vb</DependentUpon>
@@ -535,6 +534,9 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\ClassLaporanPelunasanKredit.datasource" />
+    <None Include="My Project\DataSources\ClassLaporanPembelian.datasource" />
+    <None Include="My Project\DataSources\ClassLaporanPenjualan.datasource" />
     <None Include="My Project\DataSources\DataBarang.datasource" />
     <None Include="My Project\DataSources\DataKelompok.datasource" />
     <None Include="My Project\DataSources\DataPelanggan.datasource" />

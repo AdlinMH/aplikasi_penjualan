@@ -228,11 +228,20 @@ Public Class FormBarang
         ElseIf (Not Decimal.TryParse(tb.Text, d)) Then
             e.Cancel = True
             errMessage.SetError(tb, "Field Harus Angka")
-        ElseIf (Decimal.Parse(tb.Text) < 1) Then
+        ElseIf (Decimal.Parse(tb.Text) < 0) Then
             e.Cancel = True
-            errMessage.SetError(tb, "Field tidak boleh 0 atau Negatif")
+            errMessage.SetError(tb, "Field tidak boleh Negatif")
         Else
             errMessage.SetError(tb, "")
+        End If
+    End Sub
+
+    Private Sub tbKelompok_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tbKelompok.Validating
+        If String.IsNullOrEmpty(tbKelompok.Text) Then
+            e.Cancel = True
+            errMessage.SetError(tbKelompok, "Field Tidak Boleh Kosong")
+        Else
+            errMessage.SetError(tbKelompok, "")
         End If
     End Sub
 

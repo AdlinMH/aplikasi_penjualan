@@ -36,11 +36,13 @@ Partial Class FormMain
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LaporanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransaksiPelunanasanKreditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PersedianBarangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PelangganToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PenjualanTunaiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PenjualanKreditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PengaturanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -69,7 +71,7 @@ Partial Class FormMain
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(0)
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.MenuStrip1.Size = New System.Drawing.Size(200, 301)
+        Me.MenuStrip1.Size = New System.Drawing.Size(200, 282)
         Me.MenuStrip1.TabIndex = 8
         '
         'MasterToolStripMenuItem
@@ -179,7 +181,7 @@ Partial Class FormMain
         'LaporanToolStripMenuItem
         '
         Me.LaporanToolStripMenuItem.AutoSize = False
-        Me.LaporanToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransaksiPelunanasanKreditToolStripMenuItem, Me.ToolStripMenuItem3, Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.PersedianBarangToolStripMenuItem, Me.PelangganToolStripMenuItem, Me.PenjualanTunaiToolStripMenuItem, Me.PenjualanKreditToolStripMenuItem})
+        Me.LaporanToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransaksiPelunanasanKreditToolStripMenuItem, Me.ToolStripMenuItem9, Me.ToolStripMenuItem3, Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.PersedianBarangToolStripMenuItem, Me.PelangganToolStripMenuItem, Me.ToolStripMenuItem10, Me.PenjualanTunaiToolStripMenuItem, Me.PenjualanKreditToolStripMenuItem})
         Me.LaporanToolStripMenuItem.Font = New System.Drawing.Font("Lucida Sans Unicode", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LaporanToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.LaporanToolStripMenuItem.Image = Global.Inventory.My.Resources.Resources.ic_chrome_reader_mode_white_48dp_1x
@@ -198,6 +200,14 @@ Partial Class FormMain
         Me.TransaksiPelunanasanKreditToolStripMenuItem.Name = "TransaksiPelunanasanKreditToolStripMenuItem"
         Me.TransaksiPelunanasanKreditToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
         Me.TransaksiPelunanasanKreditToolStripMenuItem.Text = "Daftar Pesanan"
+        '
+        'ToolStripMenuItem9
+        '
+        Me.ToolStripMenuItem9.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.ToolStripMenuItem9.ForeColor = System.Drawing.Color.White
+        Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
+        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(259, 22)
+        Me.ToolStripMenuItem9.Text = "Daftar Pembelian"
         '
         'ToolStripMenuItem3
         '
@@ -238,6 +248,14 @@ Partial Class FormMain
         Me.PelangganToolStripMenuItem.Name = "PelangganToolStripMenuItem"
         Me.PelangganToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
         Me.PelangganToolStripMenuItem.Text = "Laporan Pelanggan"
+        '
+        'ToolStripMenuItem10
+        '
+        Me.ToolStripMenuItem10.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.ToolStripMenuItem10.ForeColor = System.Drawing.Color.White
+        Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(259, 22)
+        Me.ToolStripMenuItem10.Text = "Laporan Pembelian"
         '
         'PenjualanTunaiToolStripMenuItem
         '
@@ -322,4 +340,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem5 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem8 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem9 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem10 As ToolStripMenuItem
 End Class

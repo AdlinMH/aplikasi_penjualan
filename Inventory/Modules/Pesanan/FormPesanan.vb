@@ -184,9 +184,8 @@ Public Class FormPesanan
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
 
-        Dim rpt = New Faktur_Pemesanan()
-        Dim path = CurDir() + "\Laporan\"
-        rpt.Load(path + "faktur pemesanan.rpt")
+        Dim rpt = New ReportDocument()
+        rpt.Load(CurDir() + "\Modules\Laporan\" + "Faktur Pemesanan.rpt")
         rpt.Refresh()
 
         rpt.SetDataSource(_data.DetailPesanan.ToList())
@@ -200,8 +199,8 @@ Public Class FormPesanan
         rpt.SetParameterValue("No Pemesanan", tbKode.Text)
 
 
-        ' Dim view = New FormLaporan("Faktur Pemesanan", rpt)
-        ' View.ShowDialog()
+        Dim view = New FormLaporan(ReportName.FakturPemesanan, rpt)
+        view.ShowDialog()
     End Sub
 
     Private Sub tbPelanggan_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tbPelanggan.Validating

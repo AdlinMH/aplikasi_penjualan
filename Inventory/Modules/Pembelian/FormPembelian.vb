@@ -148,8 +148,7 @@ Public Class FormPembelian
 
     Private Sub btnSimpanDetail_Click(sender As Object, e As EventArgs) Handles btnSimpanDetail.Click
 
-        If ValidatingDetail() Then
-            If (_isTambahDetail) Then
+        If (_isTambahDetail) Then
                 ViewToModel(_dataDetail)
                 _dataDetail.DataBarang.Stok += _dataDetail.Qty
                 _data.DetailPembelian.Add(_dataDetail)
@@ -172,10 +171,7 @@ Public Class FormPembelian
             _dataDetail.Sub_Total = 0
 
             ModelToView(_dataDetail)
-            InitControlDetail()
-        End If
-
-
+        InitControlDetail()
     End Sub
 
     Private Sub btnTutup_Click(sender As Object, e As EventArgs) Handles btnTutup.Click
@@ -217,28 +213,6 @@ Public Class FormPembelian
     Private Sub gvData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvData.CellClick
         _idx = gvData.CurrentRow.Index
     End Sub
-
-    'Private Sub tbSubTotal_TextChanged(sender As Object, e As EventArgs) Handles tbSubTotal.TextChanged, tbDiskon1.TextChanged
-    '    Dim subTotal = Decimal.Parse(tbSubTotal.Text)
-    '    Dim disc = Decimal.Parse(tbDiskon1.Text)
-    '    Dim ppn = Decimal.Parse(tbPPN1.Text)
-    '    Dim disc2 = subTotal * disc / 100
-    '    Dim ppn2 = (subTotal - disc2) * ppn / 100
-    '    Dim total = subTotal - disc2 + ppn2
-    '    tbDiskon2.Text = disc2
-    '    tbPPN2.Text = ppn2
-    '    tbTotal.Text = total
-    'End Sub
-
-    'Private Sub tbPPN1_TextChanged(sender As Object, e As EventArgs) Handles tbPPN1.TextChanged
-    '    Dim subTotal = Decimal.Parse(tbSubTotal.Text)
-    '    Dim disc2 = Decimal.Parse(tbDiskon2.Text)
-    '    Dim ppn = Decimal.Parse(tbPPN1.Text)
-    '    Dim ppn2 = (subTotal - disc2) * ppn / 100
-    '    Dim total = subTotal - disc2 + ppn2
-    '    tbPPN2.Text = ppn2
-    '    tbTotal.Text = total
-    'End Sub
 
     Private Sub tbQty_TextChanged(sender As Object, e As EventArgs) Handles tbQty.TextChanged, tbHarga.TextChanged
         Dim harga As Decimal

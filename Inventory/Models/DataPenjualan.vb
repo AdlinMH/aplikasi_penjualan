@@ -50,5 +50,7 @@ Partial Public Class DataPenjualan
 
     Public Overridable Property DataPesanan As DataPesanan
 
+    Public Overridable Property DataTerminPelunasan As ICollection(Of DataTerminPelunasan) = New HashSet(Of DataTerminPelunasan)
+
 
 End Class

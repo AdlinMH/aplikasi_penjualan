@@ -101,16 +101,18 @@ Public Class FormPelunasan
         frm.ShowDialog()
 
         If frm.DialogResult = DialogResult.OK Then
+            Dim jumlahTermin = (From d In _db.DataTerminPelunasan Where d.No_Penjualan = _data.No_Piutang Select d.Jumlah_Termin).FirstOrDefault()
+            Dim countTermin = (From d In _db.DataPelunasan Where d.No_Piutang = _data.No_Piutang).Count
             _data.DataPiutang = frm.Entity
             tbPiutang.Text = _data.DataPiutang.No_Piutang
             dtTempo.Value = _data.DataPiutang.Jatuh_Tempo
             tbPelanggan.Text = _data.DataPiutang.Kode_Pelanggan
-            ' tbNamaPelanggan.Text = _data.DataPiutang.Nama_Pelanggan
+            tbNamaPelanggan.Text = _data.DataPiutang.DataPelanggan.Nama_Pelanggan
+            tbTermin.Text = countTermin + 1
             tbTotalHarga.Text = _data.DataPiutang.Nilai
             Dim panjar As Long = _data.DataPiutang.Panjar
-            Dim totalBayar As Long = _data.DataPiutang.Total_Bayar
+            Dim totalBayar As Long = IIf(jumlahTermin <> 0, _data.DataPiutang.Nilai / jumlahTermin, _data.DataPiutang.Total_Bayar)
             tbTotalBayar.Text = panjar + totalBayar
-            ' alamat = _data.DataPiutang.Alamat
 
             tbSisa.Text = Long.Parse(tbTotalHarga.Text) - Long.Parse(tbTotalBayar.Text)
         End If

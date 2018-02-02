@@ -1,20 +1,23 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class FormLogin
-    Private _sqlConn As SqlConnection
+    Private _db As DbEntities
+    Private _cls As ClassUser
+    Private _data As DataUser
 
-    Public Sub New(_sqlConn As SqlConnection)
+    Public Sub New()
         InitializeComponent()
-        Me._sqlConn = _sqlConn
+        _db = New DbEntities()
+        _data = New DataUser()
+        _cls = New ClassUser(_db)
     End Sub
 
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
-        Dim cls = New ClassUser(_sqlConn)
-        Dim data = New ModelUser()
-        data.Password = tbPass.Text
-        data.UserName = tbUser.Text
-        cls.Data = data
-        Dim a = cls.IsAuthorized()
+        _data.Password = tbPass.Text
+        _data.User_Name = tbUser.Text
+
+        _cls.Data = _data
+        Dim a = _cls.IsAuthorized()
 
         If a Then
             DialogResult = DialogResult.OK
